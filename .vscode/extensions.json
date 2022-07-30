@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"antfu.vite",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"dsznajder.es7-react-js-snippets",
+		"Lokalise.i18n-ally"
+	]
+}
