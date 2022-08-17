@@ -1,0 +1,15 @@
+{
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"eslint.probe": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html",
+		"markdown"
+	],
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"],
+	"vite.buildCommand": "yarn build",
+	"vite.devCommand": "yarn dev"
+}
