@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import lottie, { AnimationItem } from 'lottie-web';
 import { useScroll } from 'framer-motion';
-import Subtitle from './Subtitle';
 
 type Props = {
   virtualHeight: string;
@@ -48,7 +47,6 @@ function AnimationFrame(props: Props) {
       virtualHeight={props.virtualHeight}
     >
       <Lottie ref={lottieRef}></Lottie>
-      <Subtitle />
     </Wrapper>
   );
 }
