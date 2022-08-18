@@ -11,6 +11,10 @@ type Props = {
 function AnimationFrame(props: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const lottieRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ['start', 'end'],
+  });
   let anim: AnimationItem;
 
   useEffect(() => {
@@ -21,23 +25,16 @@ function AnimationFrame(props: Props) {
       autoplay: false,
       animationData: props.animData,
     });
-
-    return () => {
-      anim.destroy();
-    };
   }, []);
 
-  const scroll = useScroll({
-    target: wrapperRef,
-    offset: ['start', 'end'],
-  });
-
-  const handleScroll = () => {
-    const { scrollYProgress } = scroll;
+  let startFrame = 0;
+  function handleScroll() {
     const maxFrames = anim.totalFrames;
-    const frame = (maxFrames / 0.8) * scrollYProgress.get();
-    anim.goToAndStop(frame, true);
-  };
+    const endFrame = Math.floor(maxFrames * scrollYProgress.get());
+    anim.playSegments([startFrame, endFrame], true);
+    console.log(startFrame, endFrame);
+    startFrame = endFrame;
+  }
 
   return (
     <Wrapper
