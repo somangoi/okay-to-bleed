@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.10.0",
+    "@mui/material": "^5.10.1",
     "@mui/styled-engine-sc": "^5.10.0",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
