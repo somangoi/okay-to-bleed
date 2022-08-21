@@ -14,38 +14,38 @@ export default function Period() {
       <Animation
         id="lottie-1-1"
         animationSrc={animationUrl1_1}
-        virtualHeight="800vh"
+        virtualHeight="600vh"
         maxFrame={300}
         stopOffset={0.1}
       />
       <Animation
         id="lottie-1-2"
         animationSrc={animationUrl1_2}
-        virtualHeight="400vh"
+        virtualHeight="300vh"
         maxFrame={150}
       />
       <Animation
         id="lottie-2-1"
         animationSrc={animationUrl2_1}
-        virtualHeight="800vh"
+        virtualHeight="600vh"
         maxFrame={300}
       />
       <Animation
         id="lottie-2-2"
         animationSrc={animationUrl2_2}
-        virtualHeight="320vh"
+        virtualHeight="240vh"
         maxFrame={120}
       />
       <Animation
         id="lottie-3-1"
         animationSrc={animationUrl3_1}
-        virtualHeight="400vh"
+        virtualHeight="300vh"
         maxFrame={150}
       />
       <Animation
         id="lottie-3-2"
         animationSrc={animationUrl3_2}
-        virtualHeight="400vh"
+        virtualHeight="300vh"
         maxFrame={150}
       />
       <Subtitle />
