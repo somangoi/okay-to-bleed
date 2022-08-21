@@ -19,6 +19,7 @@ h1 {
   top: 0.5rem;
   left: 0.5rem;
   font-weight: 400;
+  z-index: 100;
 }
 
 nav {
@@ -26,6 +27,7 @@ nav {
   position: fixed;
   top: 0.5rem;
   right: 0.5rem;
+  z-index: 100;
 }
 
 a {
