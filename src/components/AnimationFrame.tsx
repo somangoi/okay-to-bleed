@@ -1,52 +1,60 @@
+// @ts-nocheck
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import lottie, { AnimationItem } from 'lottie-web';
-import { useScroll } from 'framer-motion';
+import '@lottiefiles/lottie-player';
+import { create } from '@lottiefiles/lottie-interactivity';
 
 type Props = {
+  id: string;
+  animationSrc: string;
   virtualHeight: string;
-  animData: any;
+  stopOffset?: number;
+  maxFrame: number;
 };
 
 function AnimationFrame(props: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const lottieRef = useRef<HTMLDivElement>(null);
-  let anim: AnimationItem;
+  const wrapperId = props.id + '-wrapper';
+  const lottieId = props.id;
+  const stopOffset = props.stopOffset || 0;
 
   useEffect(() => {
-    anim = lottie.loadAnimation({
-      container: lottieRef.current!,
-      renderer: 'svg',
-      loop: false,
-      autoplay: false,
-      animationData: props.animData,
+    lottieRef.current?.addEventListener('load', function (e) {
+      create({
+        mode: 'scroll',
+        player: '#' + lottieId,
+        container: '#' + wrapperId,
+        actions: [
+          {
+            visibility: [0, stopOffset],
+            type: 'stop',
+            frames: [0],
+          },
+          {
+            visibility: [stopOffset, 1.0],
+            type: 'seek',
+            frames: [0, props.maxFrame],
+          },
+        ],
+      });
     });
-
-    return () => {
-      anim.destroy();
-    };
   }, []);
-
-  const scroll = useScroll({
-    target: wrapperRef,
-    offset: ['start', 'end'],
-  });
-
-  const handleScroll = () => {
-    const { scrollYProgress } = scroll;
-    const maxFrames = anim.totalFrames;
-    const frame = (maxFrames / 0.8) * scrollYProgress.get();
-    anim.goToAndStop(frame, true);
-  };
 
   return (
     <Wrapper
-      onTouchMove={handleScroll}
-      onWheel={handleScroll}
+      id={wrapperId}
       ref={wrapperRef}
       virtualHeight={props.virtualHeight}
     >
-      <Lottie ref={lottieRef}></Lottie>
+      <Lottie>
+        <lottie-player
+          id={lottieId}
+          ref={lottieRef}
+          src={props.animationSrc}
+          mode="normal"
+        ></lottie-player>
+      </Lottie>
     </Wrapper>
   );
 }
