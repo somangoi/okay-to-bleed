@@ -4,7 +4,8 @@ import subtitlesData from '../subtitle/subtitles.json';
 
 const getSubtitle = () => {
   const result = subtitlesData.find(data => {
-    return data.start <= window.pageYOffset && data.end >= window.pageYOffset;
+    const offsetY = window.pageYOffset || document.documentElement.scrollTop;
+    return data.start <= offsetY && data.end >= offsetY;
   });
 
   return result || { text: '' };
@@ -13,18 +14,18 @@ const getSubtitle = () => {
 function Subtitle() {
   const [currentSubtitle, setCurrentSubtitle] = useState('');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { text } = getSubtitle();
-      if (currentSubtitle !== text) {
-        setCurrentSubtitle(text);
-      }
-    };
+  const handleScroll = () => {
+    const { text } = getSubtitle();
+    if (currentSubtitle !== text) {
+      setCurrentSubtitle(text);
+    }
+  };
 
+  useEffect(() => {
     window.addEventListener('scroll', () => {
       const offsetY = window.pageYOffset || document.documentElement.scrollTop;
-      if (offsetY % 20 === 0) {
-        // console.log('window.scrollY', window.pageYOffset);
+      if (offsetY % 10 === 0) {
+        console.log('window.scrollY', window.pageYOffset);
         handleScroll();
       }
     });
