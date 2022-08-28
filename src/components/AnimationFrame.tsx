@@ -46,6 +46,7 @@ function AnimationFrame(props: Props) {
       id={wrapperId}
       ref={wrapperRef}
       virtualHeight={props.virtualHeight}
+      className="animation_wrapper"
     >
       <Lottie>
         <lottie-player
