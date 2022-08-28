@@ -33,11 +33,9 @@ const createThreshold = () => {
 };
 
 function Subtitle() {
-  const [currentSubtitle, setCurrentSubtitle] = useState('');
+  const [currentSubtitle, setCurrentSubtitle] = useState<string>('');
 
   const handleScroll = () => {
-    const offsetY = window.pageYOffset || document.documentElement.scrollTop;
-    console.log(offsetY);
     const { text } = getSubtitle();
     if (currentSubtitle !== text) {
       setCurrentSubtitle(text);
