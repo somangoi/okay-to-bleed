@@ -7,6 +7,7 @@ import animationUrl3_1 from '../anim/3_1.json?url';
 import animationUrl3_2 from '../anim/3_2.json?url';
 
 import Subtitle from '../components/Subtitle';
+import PeriodFAQ from './PeriodFAQ';
 
 export default function Period() {
   return (
@@ -48,6 +49,7 @@ export default function Period() {
         virtualHeight="300vh"
         maxFrame={150}
       />
+      <PeriodFAQ />
       <Subtitle />
     </main>
   );
