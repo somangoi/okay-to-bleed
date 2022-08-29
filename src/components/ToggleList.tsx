@@ -35,7 +35,7 @@ const ToggleList = ({ title, content }: ToggleListProps) => {
 };
 
 const ToggleContainer = styled.div`
-  padding: 1rem 1rem 1rem 2rem;
+  padding: 1.2rem 1.2rem 1.2rem 2rem;
   border-radius: 20px;
   border: 1px solid white;
   width: 80%;
@@ -51,7 +51,7 @@ const ListTitleContainer = styled.div`
 
 const ListTitle = styled.p`
   margin: 0;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   font-weight: 700;
 `;
 
