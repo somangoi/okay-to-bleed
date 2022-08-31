@@ -4,6 +4,7 @@
   max-width: 1280px;
   font-family: 'Montserrat', Inter, Avenir, Helvetica, Arial, sans-serif;
   margin: 0 auto;
+  white-space: pre-line;
 }
 
 .App {
