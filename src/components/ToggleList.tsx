@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import { Collapse } from '@mui/material';
 
 interface ToggleListProps {
   title: string;
@@ -25,11 +26,11 @@ const ToggleList = ({ title, content }: ToggleListProps) => {
           <ExpandMoreRoundedIcon />
         </IconContainer>
       </ListTitleContainer>
-      {isContentShown && (
+      <Collapse in={isContentShown} timeout="auto" unmountOnExit>
         <ListContentContainer isContentShown={isContentShown}>
           <ListContent>{content}</ListContent>
         </ListContentContainer>
-      )}
+      </Collapse>
     </ToggleContainer>
   );
 };
