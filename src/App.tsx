@@ -5,6 +5,7 @@ import {
   ContactSupportRounded,
   VolunteerActivismRounded,
 } from '@mui/icons-material';
+import '../src/config/i18n/i18n';
 
 function App() {
   return (

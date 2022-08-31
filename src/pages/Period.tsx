@@ -1,6 +1,7 @@
 import React from 'react';
 import Animation from '../components/AnimationFrame';
 import Subtitle from '../components/Subtitle';
+import PeriodFAQ from './PeriodFAQ';
 import animationUrl1_1 from '../anim/1_1.json?url';
 import animationUrl1_2 from '../anim/1_2.json?url';
 import animationUrl2_1 from '../anim/2_1.json?url';
@@ -48,6 +49,7 @@ function Period() {
         virtualHeight="300vh"
         maxFrame={150}
       />
+      <PeriodFAQ />
       <Subtitle />
     </main>
   );
