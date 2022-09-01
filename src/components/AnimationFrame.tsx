@@ -1,58 +1,120 @@
+// @ts-nocheck
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import lottie, { AnimationItem } from 'lottie-web';
-import { useScroll } from 'framer-motion';
+import '@lottiefiles/lottie-player';
+import { create } from '@lottiefiles/lottie-interactivity';
+import { CircularProgress, Box } from '@mui/material';
 
 type Props = {
+  id: string;
+  animationSrc: string;
   virtualHeight: string;
-  animData: any;
+  stopOffset?: number;
+  maxFrame: number;
 };
 
 function AnimationFrame(props: Props) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const lottieRef = useRef<HTMLDivElement>(null);
-  let anim: AnimationItem;
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [visible, setVisible] = React.useState<boolean>(false);
+  const [animationUrl, setAnimationUrl] = React.useState<string>();
+  const observerRef = React.useRef<IntersectionObserver>();
+  const loadTriggerRef = React.useRef<HTMLDivElement>(null);
+  const lottieRef = React.useRef<HTMLDivElement>(null);
+  const wrapperId = props.id + '-wrapper';
+  const lottieId = props.id;
+  const stopOffset = props.stopOffset || 0;
+  const animationSrc = props.animationSrc;
 
   useEffect(() => {
-    anim = lottie.loadAnimation({
-      container: lottieRef.current!,
-      renderer: 'svg',
-      loop: false,
-      autoplay: false,
-      animationData: props.animData,
-    });
-
-    return () => {
-      anim.destroy();
-    };
+    observerRef.current = new IntersectionObserver(intersectionObserver);
+    loadTriggerRef.current &&
+      observerRef.current.observe(loadTriggerRef.current);
   }, []);
 
-  const scroll = useScroll({
-    target: wrapperRef,
-    offset: ['start', 'end'],
-  });
+  useEffect(() => {
+    if (visible) {
+      lottieRef.current?.addEventListener('load', function (e) {
+        create({
+          mode: 'scroll',
+          player: '#' + lottieId,
+          container: '#' + wrapperId,
+          actions: [
+            {
+              visibility: [0, stopOffset],
+              type: 'stop',
+              frames: [0],
+            },
+            {
+              visibility: [stopOffset, 1.0],
+              type: 'seek',
+              frames: [0, props.maxFrame],
+            },
+          ],
+        });
+      });
+      lottieRef.current?.addEventListener('ready', function (e) {
+        setLoading(false);
+      });
+    }
+  }, [visible]);
 
-  const handleScroll = () => {
-    const { scrollYProgress } = scroll;
-    const maxFrames = anim.totalFrames;
-    const frame = (maxFrames / 0.8) * scrollYProgress.get();
-    anim.goToAndStop(frame, true);
+  const intersectionObserver = (
+    entries: IntersectionObserverEntry[],
+    io: IntersectionObserver,
+  ) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        io.unobserve(entry.target);
+        import(/* @vite-ignore */ animationSrc + '?url').then(value => {
+          setAnimationUrl(value.default);
+          setVisible(true);
+        });
+      }
+    });
   };
 
   return (
-    <Wrapper
-      onTouchMove={handleScroll}
-      onWheel={handleScroll}
-      ref={wrapperRef}
-      virtualHeight={props.virtualHeight}
-    >
-      <Lottie ref={lottieRef}></Lottie>
-    </Wrapper>
+    <div>
+      <LoadTrigger ref={loadTriggerRef} />
+      <Wrapper
+        id={wrapperId}
+        virtualHeight={props.virtualHeight}
+        className="animation_wrapper"
+      >
+        <Lottie>
+          {loading && (
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              minHeight="100vh"
+            >
+              <CircularProgress size={60} sx={{ color: '#fff' }} />
+            </Box>
+          )}
+          {visible && (
+            <lottie-player
+              id={lottieId}
+              ref={lottieRef}
+              src={animationUrl}
+              mode="normal"
+            ></lottie-player>
+          )}
+        </Lottie>
+      </Wrapper>
+    </div>
   );
 }
 
-const Wrapper = styled.div<Pick<Props, 'virtualHeight'>>`
-  height: ${props => props.virtualHeight || '100vh'};
+// 뷰 포인트 전에 json파일을 미리 로드하는 지점
+const LoadTrigger = styled.div`
+  height: 200vh;
+  margin-top: -200vh;
+  z-index: -99;
+`;
+
+const Wrapper = styled.div<{ virtualHeight: string }>`
+  height: ${({ virtualHeight }) => virtualHeight || '100vh'};
 `;
 
 const Lottie = styled.div`
@@ -62,4 +124,4 @@ const Lottie = styled.div`
   height: 100vh;
 `;
 
-export default AnimationFrame;
+export default React.memo(AnimationFrame);

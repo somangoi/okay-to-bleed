@@ -1,11 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 #root {
   max-width: 1280px;
+  font-family: 'Montserrat', Inter, Avenir, Helvetica, Arial, sans-serif;
   margin: 0 auto;
+  white-space: pre-line;
+}
+
+.App {
   padding: 2rem;
-  text-align: center;
+}
+
+h1 {
+  font-size: 1.2rem;
+  color: white;
+  padding: 1.5rem !important;
+  position: fixed;
+  margin: 0;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-weight: 400;
+  z-index: 100;
 }
 
 nav {
-  border-bottom: 'solid 1px';
-  padding-bottom: '1rem';
+  padding: 1.5rem;
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 100;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+  margin-right: 1rem;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:last-child {
+  margin-right: 0;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  padding: 1.5rem;
+}
+
+footer a {
+  margin-right: 1rem;
 }
