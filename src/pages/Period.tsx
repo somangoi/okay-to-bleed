@@ -2,50 +2,44 @@ import React from 'react';
 import Animation from '../components/AnimationFrame';
 import Subtitle from '../components/Subtitle';
 import PeriodFAQ from './PeriodFAQ';
-import animationUrl1_1 from '../anim/1_1.json?url';
-import animationUrl1_2 from '../anim/1_2.json?url';
-import animationUrl2_1 from '../anim/2_1.json?url';
-import animationUrl2_2 from '../anim/2_2.json?url';
-import animationUrl3_1 from '../anim/3_1.json?url';
-import animationUrl3_2 from '../anim/3_2.json?url';
 
 function Period() {
   return (
     <main style={{ padding: '1rem 0' }}>
       <Animation
         id="lottie-1-1"
-        animationSrc={animationUrl1_1}
+        animationSrc="../anim/1_1.json"
         virtualHeight="600vh"
         maxFrame={300}
         stopOffset={0.1}
       />
       <Animation
         id="lottie-1-2"
-        animationSrc={animationUrl1_2}
+        animationSrc="../anim/1_2.json"
         virtualHeight="300vh"
         maxFrame={150}
       />
       <Animation
         id="lottie-2-1"
-        animationSrc={animationUrl2_1}
+        animationSrc="../anim/2_1.json"
         virtualHeight="600vh"
         maxFrame={300}
       />
       <Animation
         id="lottie-2-2"
-        animationSrc={animationUrl2_2}
+        animationSrc="../anim/2_2.json"
         virtualHeight="240vh"
         maxFrame={120}
       />
       <Animation
         id="lottie-3-1"
-        animationSrc={animationUrl3_1}
+        animationSrc="../anim/3_1.json"
         virtualHeight="300vh"
         maxFrame={150}
       />
       <Animation
         id="lottie-3-2"
-        animationSrc={animationUrl3_2}
+        animationSrc="../anim/3_2.json"
         virtualHeight="300vh"
         maxFrame={150}
       />
