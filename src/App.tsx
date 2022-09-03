@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Okay to bleed test</h1>
+      <h1>Okay to bleed</h1>
       <nav>
         <Link to="/">
           <HomeRounded />
