@@ -25,7 +25,6 @@ function Subtitle() {
     window.addEventListener('scroll', () => {
       const offsetY = window.pageYOffset || document.documentElement.scrollTop;
       if (offsetY % 10 === 0) {
-        console.log('window.scrollY', window.pageYOffset);
         handleScroll();
       }
     });

@@ -34,6 +34,8 @@ function AnimationFrame(props: Props) {
   useEffect(() => {
     if (visible) {
       lottieRef.current?.addEventListener('load', function (e) {
+        console.log('load');
+        lottieRef.current.src = animationUrl;
         create({
           mode: 'scroll',
           player: '#' + lottieId,
