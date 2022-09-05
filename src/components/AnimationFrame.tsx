@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import '@lottiefiles/lottie-player';
 import { create } from '@lottiefiles/lottie-interactivity';
 import { CircularProgress, Box } from '@mui/material';
+import animUrl from '../anim/1_1.json?url';
 
 type Props = {
   id: string;
@@ -65,10 +66,10 @@ function AnimationFrame(props: Props) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         io.unobserve(entry.target);
-        import('../anim/1_1.json?url').then(value => {
-          setAnimationUrl(value.default);
-          setVisible(true);
-        });
+        // import('../anim/1_1.json?url').then(value => {
+        //   setAnimationUrl(value.default);
+        // });
+        setVisible(true);
       }
     });
   };
@@ -96,7 +97,7 @@ function AnimationFrame(props: Props) {
             <lottie-player
               id={lottieId}
               ref={lottieRef}
-              src={animationUrl}
+              src={animUrl}
               mode="normal"
             ></lottie-player>
           )}
