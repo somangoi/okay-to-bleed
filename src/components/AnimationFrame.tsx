@@ -65,7 +65,7 @@ function AnimationFrame(props: Props) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         io.unobserve(entry.target);
-        import(/* @vite-ignore */ animationSrc + '?url').then(value => {
+        import('../anim/1_1.json?url').then(value => {
           setAnimationUrl(value.default);
           setVisible(true);
         });
