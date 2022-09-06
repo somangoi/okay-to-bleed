@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import '@lottiefiles/lottie-player';
 import { create } from '@lottiefiles/lottie-interactivity';
 import { CircularProgress, Box } from '@mui/material';
-import animUrl from '../anim/1_1.json?url';
 
 type Props = {
   id: string;
