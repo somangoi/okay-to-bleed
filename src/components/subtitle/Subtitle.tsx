@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import subtitlesData from '../subtitle/subtitles.json';
+import subtitlesData from '../../subtitle/subtitles.json';
 
 const getSubtitle = () => {
   const result = subtitlesData.find(data => {
