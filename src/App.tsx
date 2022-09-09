@@ -7,6 +7,7 @@ import {
 } from '@mui/icons-material';
 import '../src/config/i18n/i18n';
 import RouteChangeTracker from './config/ga/RouteChangeTracker';
+import { ScrollToTopButton } from './components/button/ScrollToTopButton';
 
 function App() {
   RouteChangeTracker();
@@ -40,6 +41,7 @@ function App() {
           </Link>
         </div>
       </footer>
+      <ScrollToTopButton />
     </div>
   );
 }
