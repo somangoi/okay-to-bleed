@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Zoom, Fab } from '@mui/material';
-import { KeyboardArrowUp } from '@mui/icons-material';
+import { KeyboardArrowUpRounded } from '@mui/icons-material';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 export const ScrollToTopButton = () => {
@@ -27,7 +27,7 @@ export const ScrollToTopButton = () => {
           size="small"
           aria-label="scroll back to top"
         >
-          <KeyboardArrowUp />
+          <KeyboardArrowUpRounded />
         </Fab>
       </Box>
     </Zoom>
