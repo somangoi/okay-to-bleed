@@ -1,7 +1,7 @@
 {
   "name": "okay-to-bleed",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -23,6 +23,7 @@
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-ga": "^3.3.1",
     "react-i18next": "^11.18.5",
     "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5"

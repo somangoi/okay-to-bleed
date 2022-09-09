@@ -6,8 +6,11 @@ import {
   VolunteerActivismRounded,
 } from '@mui/icons-material';
 import '../src/config/i18n/i18n';
+import RouteChangeTracker from './config/ga/RouteChangeTracker';
 
 function App() {
+  RouteChangeTracker();
+
   return (
     <div className="App">
       <h1>Okay to bleed</h1>

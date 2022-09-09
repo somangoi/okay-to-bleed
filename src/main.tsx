@@ -1,9 +1,14 @@
 import { LinearProgress } from '@mui/material';
 import React, { Suspense, lazy } from 'react';
+import ReactGA from 'react-ga';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import './index.css';
+
+const TRACKING_ID = import.meta.env.VITE_REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
+
+ReactGA.initialize(TRACKING_ID!);
 
 const Period = lazy(() => import('./pages/Period'));
 const Contact = lazy(() => import('./pages/Contact'));
