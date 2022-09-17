@@ -87,6 +87,7 @@ function AnimationFrame(props: Props) {
 }
 
 const Wrapper = styled.div`
+  display: block;
   min-height: '100vh';
 `;
 
