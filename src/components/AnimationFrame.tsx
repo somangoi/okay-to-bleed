@@ -52,7 +52,6 @@ function AnimationFrame(props: Props) {
   };
 
   function scrollPlay() {
-    var x = wrapperElement;
     var frame = window.scrollY / playback;
     videoElement.currentTime = frame;
     animationRequest = requestAnimationFrame(scrollPlay);
@@ -94,6 +93,7 @@ const Wrapper = styled.div`
 const Video = styled.video`
   object-fill: contain;
   width: 100%;
+  height: 100vh;
 `;
 
 const Content = styled.div`

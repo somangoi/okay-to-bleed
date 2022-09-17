@@ -6,7 +6,7 @@ import PeriodFAQ from './PeriodFAQ';
 function Period() {
   return (
     <main style={{ padding: '1rem 0' }}>
-      <Animation name="0-0-1" playback={700} />
+      <Animation name="0-0-1" playback={300} />
       <PeriodFAQ />
       <Subtitle />
     </main>
