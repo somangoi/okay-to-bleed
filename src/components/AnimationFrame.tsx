@@ -13,7 +13,6 @@ function AnimationFrame(props: Props) {
   const { t } = useTranslation('AnimationFrame');
   const [loading, setLoading] = React.useState<boolean>(true);
   const [visible, setVisible] = React.useState<boolean>(false);
-  const [animationUrl, setAnimationUrl] = React.useState<string>();
   const observerRef = React.useRef<IntersectionObserver>();
   const wrapperRef = React.useRef<HTMLDivElement>();
   const videoRef = React.createRef();
