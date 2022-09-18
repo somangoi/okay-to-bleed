@@ -1,45 +1,19 @@
 import './App.css';
-import { Outlet, Link } from 'react-router-dom';
-import {
-  HomeRounded,
-  ContactSupportRounded,
-  VolunteerActivismRounded,
-} from '@mui/icons-material';
+import './styles/reset.css';
+import { Outlet } from 'react-router-dom';
 import '../src/config/i18n/i18n';
 import RouteChangeTracker from './config/ga/RouteChangeTracker';
+import Header from './components/headers/Header';
+import Footer from './components/footers/Footer';
 
 function App() {
   RouteChangeTracker();
 
   return (
     <div className="App">
-      <h1>Okay to bleed</h1>
-      <nav>
-        <Link to="/">
-          <HomeRounded />
-        </Link>
-        <Link to="/contact">
-          <ContactSupportRounded />
-        </Link>
-        <Link to="/support">
-          <VolunteerActivismRounded />
-        </Link>
-      </nav>
+      <Header />
       <Outlet />
-      <footer>
-        <small>&copy; 2022, Okay to bleed</small>
-        <div>
-          <Link to="/">
-            <small>Home</small>
-          </Link>
-          <Link to="/contact">
-            <small>Contact</small>
-          </Link>
-          <Link to="/support">
-            <small>Support girls</small>
-          </Link>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
