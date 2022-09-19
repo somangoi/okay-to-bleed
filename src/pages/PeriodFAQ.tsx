@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ToggleList from '../components/ToggleList';
+import ToggleList from '../components/list/ToggleList';
 import { useTranslation } from 'react-i18next';
 
 const PeriodFAQ = () => {
