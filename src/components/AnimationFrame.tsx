@@ -26,11 +26,13 @@ function AnimationFrame(props: Props) {
   }, []);
 
   useEffect(() => {
-    if (visible) {
+    if (visible && videoElement == null) {
       videoElement = videoRef.current;
       videoElement.addEventListener('loadedmetadata', function () {
         var virtualHeight = Math.floor(this.duration) * playback + 'px';
         wrapperRef.current.style.height = virtualHeight;
+      });
+      videoElement.addEventListener('canplaythrough', function () {
         setLoading(false);
         animationRequest = requestAnimationFrame(scrollPlay);
       });
@@ -55,9 +57,6 @@ function AnimationFrame(props: Props) {
     var frame = window.scrollY / playback;
     videoElement.currentTime = frame;
     animationRequest = requestAnimationFrame(scrollPlay);
-    if (!visible) {
-      cancelAnimationFrame(animationRequest);
-    }
   }
 
   return (
@@ -93,8 +92,12 @@ const Wrapper = styled.div`
 
 const Video = styled.video`
   object-fill: contain;
-  width: 100%;
+  max-width: 100%;
   height: 100vh;
+  display: block;
+  margin: auto;
+  -webkit-clip-path: inset(3px 3px);
+  clip-path: inset(3px 3px);
 `;
 
 const Content = styled.div`
@@ -104,4 +107,4 @@ const Content = styled.div`
   height: 100vh;
 `;
 
-export default React.memo(AnimationFrame);
+export default AnimationFrame;
