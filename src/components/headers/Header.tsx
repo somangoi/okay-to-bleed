@@ -33,7 +33,7 @@ const HeaderContainer = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   padding: 1.5rem;
   z-index: 100;
 `;
