@@ -5,6 +5,7 @@ import '../src/config/i18n/i18n';
 import RouteChangeTracker from './config/ga/RouteChangeTracker';
 import Header from './components/headers/Header';
 import Footer from './components/footers/Footer';
+import { ScrollToTopButton } from './components/button/ScrollToTopButton';
 
 function App() {
   RouteChangeTracker();
@@ -14,6 +15,7 @@ function App() {
       <Header />
       <Outlet />
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 }
