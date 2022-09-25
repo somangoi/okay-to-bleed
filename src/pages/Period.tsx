@@ -1,6 +1,6 @@
 import React from 'react';
 import Animation from '../components/animation/AnimationFrame';
-import Subtitle from '../components/subtitle/Subtitle';
+import SubtitleBox from './SubtitleBox';
 import PeriodFAQ from './PeriodFAQ';
 
 function Period() {
@@ -44,7 +44,7 @@ function Period() {
         maxFrame={150}
       />
       <PeriodFAQ />
-      <Subtitle />
+      <SubtitleBox />
     </main>
   );
 }

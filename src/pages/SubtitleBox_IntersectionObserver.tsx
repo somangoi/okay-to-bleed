@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import subtitlesData from '../../subtitle/subtitles.json';
+import { useTranslation } from 'react-i18next';
+import Subtitle from '../components/subtitle/Subtitle';
+import subtitlesData from '../config/i18n/ko/Subtitles.json';
 
-const getSubtitle = () => {
-  const result = subtitlesData.find(data => {
-    const offsetY = window.pageYOffset || document.documentElement.scrollTop;
-    return data.start <= offsetY && data.end >= offsetY;
-  });
+const getSubtitleKey = () => {
+  const key = Object.keys(subtitlesData)
+    .map(data => parseInt(data))
+    .sort((a, b) => a - b)
+    .find((data: number, index: number, array: number[]) => {
+      const offsetY = window.pageYOffset || document.documentElement.scrollTop;
 
-  return result || { text: '' };
+      if (index === array.length - 1) {
+        return array[index] <= offsetY;
+      } else {
+        return array[index] <= offsetY && array[index + 1] >= offsetY;
+      }
+    });
+
+  return key && `${key}`;
 };
 
 const getTicker = (observer: IntersectionObserver) => {
@@ -32,13 +42,15 @@ const createThreshold = () => {
   return thresholdArray;
 };
 
-function Subtitle() {
-  const [currentSubtitle, setCurrentSubtitle] = useState<string>('');
+const SubtitleBox = () => {
+  const { t } = useTranslation('Subtitles');
+  const [key, setKey] = useState<string>('');
 
   const handleScroll = () => {
-    const { text } = getSubtitle();
-    if (currentSubtitle !== text) {
-      setCurrentSubtitle(text);
+    const subtitleKey = getSubtitleKey() || '0';
+
+    if (key !== subtitleKey) {
+      setKey(subtitleKey);
     }
   };
 
@@ -61,11 +73,13 @@ function Subtitle() {
   }, []);
 
   return (
-    <SubtitleBox>{currentSubtitle && <Sub>{currentSubtitle}</Sub>}</SubtitleBox>
+    <SubtitleContainer>
+      <Subtitle content={t(key)} />
+    </SubtitleContainer>
   );
-}
+};
 
-const SubtitleBox = styled.div`
+const SubtitleContainer = styled.div`
   position: sticky;
   z-index: 2;
   bottom: 5rem;
@@ -74,10 +88,4 @@ const SubtitleBox = styled.div`
   width: 100%;
 `;
 
-const Sub = styled.p`
-  background: rgba(0, 0, 0, 0.5);
-  padding: 0.5vh 2vh;
-  text-align: center;
-`;
-
-export default Subtitle;
+export default SubtitleBox;
