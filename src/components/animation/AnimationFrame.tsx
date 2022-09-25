@@ -16,7 +16,6 @@ type Props = {
 function AnimationFrame(props: Props) {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [visible, setVisible] = React.useState<boolean>(false);
-  const [animationUrl, setAnimationUrl] = React.useState<string>();
   const observerRef = React.useRef<IntersectionObserver>();
   const loadTriggerRef = React.useRef<HTMLDivElement>(null);
   const lottieRef = React.useRef<HTMLDivElement>(null);
@@ -65,10 +64,7 @@ function AnimationFrame(props: Props) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         io.unobserve(entry.target);
-        import(/* @vite-ignore */ animationSrc + '?url').then(value => {
-          setAnimationUrl(value.default);
-          setVisible(true);
-        });
+        setVisible(true);
       }
     });
   };
@@ -96,7 +92,7 @@ function AnimationFrame(props: Props) {
             <lottie-player
               id={lottieId}
               ref={lottieRef}
-              src={animationUrl}
+              src={props.animationSrc}
               mode="normal"
             ></lottie-player>
           )}

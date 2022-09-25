@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import Subtitle from '../components/Subtitle';
+import Subtitle from '../components/subtitle/Subtitle';
 import subtitlesData from '../config/i18n/ko/Subtitles.json';
 
 const getSubtitleKey = () => {
@@ -81,8 +81,8 @@ const SubtitleBox = () => {
 
 const SubtitleContainer = styled.div`
   position: sticky;
-  z-index: 100;
-  bottom: 2rem;
+  z-index: 2;
+  bottom: 5rem;
   display: flex;
   justify-content: center;
   width: 100%;

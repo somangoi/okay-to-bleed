@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import Subtitle from '../components/Subtitle';
+import Subtitle from '../components/subtitle/Subtitle';
 import subtitlesData from '../config/i18n/ko/Subtitles.json';
 
 const getSubtitleKey = () => {

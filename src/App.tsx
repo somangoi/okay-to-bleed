@@ -6,8 +6,12 @@ import {
   VolunteerActivismRounded,
 } from '@mui/icons-material';
 import '../src/config/i18n/i18n';
+import RouteChangeTracker from './config/ga/RouteChangeTracker';
+import { ScrollToTopButton } from './components/button/ScrollToTopButton';
 
 function App() {
+  RouteChangeTracker();
+
   return (
     <div className="App">
       <h1>Okay to bleed</h1>
@@ -37,6 +41,7 @@ function App() {
           </Link>
         </div>
       </footer>
+      <ScrollToTopButton />
     </div>
   );
 }
