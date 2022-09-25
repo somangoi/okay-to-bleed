@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import React, { useRef, useState } from 'react';
 import { useScroll } from '../hooks/useScroll';
 import PeriodFAQ from './PeriodFAQ';
 import { Controller, Scene } from 'react-scrollmagic';

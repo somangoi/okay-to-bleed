@@ -55,6 +55,7 @@ const ImageSequence = forwardRef<HTMLSpanElement, ImageSequenceProps>(
             ref={ref}
             key={i}
             style={{
+              // 아래 CSS 코드는 추후 fixed로 바꿀 경우에 사용할 코드입니다.
               // position: 'fixed',
               // visibility:
               //   currentSceneIndex === sceneInfo.sceneIndex
