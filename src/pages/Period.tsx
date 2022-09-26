@@ -1,6 +1,6 @@
 import React from 'react';
 import Animation from '../components/animation/AnimationFrame';
-import SubtitleBox from './SubtitleBox';
+import SubtitleBox from '../components/subtitle/SubtitleBox';
 import PeriodFAQ from './PeriodFAQ';
 
 function Period() {
