@@ -12,7 +12,7 @@ const Header = () => {
     <HeaderContainer>
       <HeaderLogoText>Okay to bleed</HeaderLogoText>
       <HeaderLinkContainer>
-        <Link to="/">
+        <Link to="/png">
           <HomeRounded />
         </Link>
         <Link to="/contact">
