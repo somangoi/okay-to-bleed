@@ -2,28 +2,40 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Subtitle from './Subtitle';
-import subtitlesData from '../../config/i18n/ko/Subtitles.json';
 
-const getSubtitleKey = () => {
-  const key = Object.keys(subtitlesData)
-    .map(data => parseInt(data))
-    .sort((a, b) => a - b)
-    .find((data: number, index: number, array: number[]) => {
-      const offsetY = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (index === array.length - 1) {
-        return array[index] <= offsetY;
-      } else {
-        return array[index] <= offsetY && array[index + 1] >= offsetY;
-      }
-    });
-
-  return key && `${key}`;
+type Props = {
+  subtitlesName: string;
+  subtitlesData: object;
 };
 
-const SubtitleBox = () => {
-  const { t } = useTranslation('Subtitles');
+const SubtitleBox = (props: Props) => {
+  const topOffset =
+    2 * parseFloat(getComputedStyle(document.documentElement).fontSize); // 2rem
+  const { subtitlesName, subtitlesData } = props;
+  const { t } = useTranslation(subtitlesName);
   const [key, setKey] = useState<string>('');
+
+  const getSubtitleKey = () => {
+    const key = Object.keys(subtitlesData)
+      .map(data => parseInt(data))
+      .sort((a, b) => a - b)
+      .find((data: number, index: number, array: number[]) => {
+        const offsetY =
+          (window.pageYOffset || document.documentElement.scrollTop) -
+          topOffset;
+        const vh = +(document.documentElement.clientHeight / 100).toFixed(2);
+
+        if (index === array.length - 1) {
+          return array[index] * vh <= offsetY;
+        } else {
+          return (
+            array[index] * vh <= offsetY && array[index + 1] * vh >= offsetY
+          );
+        }
+      });
+
+    return key && `${key}`;
+  };
 
   const handleScroll = () => {
     const subtitleKey = getSubtitleKey() || '0';
@@ -35,10 +47,7 @@ const SubtitleBox = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      const offsetY = window.pageYOffset || document.documentElement.scrollTop;
-      if (offsetY % 10 === 0) {
-        handleScroll();
-      }
+      handleScroll();
     });
 
     return () => {
