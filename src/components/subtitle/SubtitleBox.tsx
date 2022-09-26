@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Subtitle from './Subtitle';
+import { throttle } from 'lodash';
 
 type Props = {
   subtitlesName: string;
@@ -46,9 +47,12 @@ const SubtitleBox = (props: Props) => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      handleScroll();
-    });
+    window.addEventListener(
+      'scroll',
+      throttle(() => {
+        handleScroll();
+      }, 300),
+    );
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
