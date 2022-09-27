@@ -69,7 +69,7 @@ const SubtitleBox = (props: Props) => {
 const SubtitleContainer = styled.div`
   position: sticky;
   z-index: 100;
-  bottom: 2rem;
+  bottom: 5rem;
   display: flex;
   justify-content: center;
   width: 100%;
