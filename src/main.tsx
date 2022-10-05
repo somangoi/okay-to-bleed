@@ -17,7 +17,7 @@ const Support = lazy(() => import('./pages/Support'));
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Suspense fallback={<LinearProgress />}>
+      <Suspense fallback={<LinearProgress style={{ width: '100%' }} />}>
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="/" element={<Period />} />
@@ -26,8 +26,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route
               path="*"
               element={
-                <main style={{ padding: '1rem' }}>
-                  <p>Page 404: There's nothing here!</p>
+                <main style={{ padding: '4rem 0px 0px' }}>
+                  <p>
+                    Page 404<br></br>There's nothing here!
+                  </p>
                 </main>
               }
             />

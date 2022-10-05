@@ -1,7 +1,6 @@
 import PeriodFAQ from './PeriodFAQ.json';
-import Subtitles from './Subtitles.json';
-
+import Ch1Subtitles from './Ch1Subtitles.json';
 export default {
   PeriodFAQ,
-  Subtitles,
+  Ch1Subtitles,
 };
