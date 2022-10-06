@@ -2,8 +2,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Animation from '../components/animation/AnimationFrame';
-import Subtitle from '../components/subtitle/Subtitle';
+import SubtitleBox from '../components/subtitle/SubtitleBox';
 import PeriodFAQ from './PeriodFAQ';
+import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
 import '@lottiefiles/lottie-player';
 import { useTranslation } from 'react-i18next';
 
@@ -30,7 +31,7 @@ function Period() {
       <Animation
         id="lottie-1-2"
         animationSrc="/anim/1_2.json"
-        virtualHeight="300vh"
+        virtualHeight="600vh"
         maxFrame={150}
       />
       <Animation
@@ -58,7 +59,10 @@ function Period() {
         maxFrame={150}
       />
       <PeriodFAQ />
-      <Subtitle />
+      <SubtitleBox
+        subtitlesName="Ch1Subtitles"
+        subtitlesData={Ch1SubtitlesData}
+      />
     </main>
   );
 }
