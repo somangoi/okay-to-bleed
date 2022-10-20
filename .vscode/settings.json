@@ -12,5 +12,6 @@
   "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"],
   "vite.buildCommand": "yarn build",
   "vite.devCommand": "yarn dev",
-  "i18n-ally.localesPaths": ["src/config/i18n"]
+  "i18n-ally.localesPaths": ["src/config/i18n"],
+  "i18n-ally.keystyle": "nested"
 }
