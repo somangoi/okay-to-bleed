@@ -4,7 +4,10 @@ import { KeyboardArrowUpRounded } from '@mui/icons-material';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 export const ScrollToTopButton = () => {
-  const trigger = useScrollTrigger();
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
 
   const scrollToTop = React.useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
