@@ -42,6 +42,10 @@ const ToggleContainer = styled.div`
   width: 80%;
   cursor: pointer;
   margin-bottom: 1.5rem;
+
+  @media (max-width: 799px) {
+    width: 100%;
+  }
 `;
 
 const ListTitleContainer = styled.div`
@@ -53,6 +57,7 @@ const ListTitleContainer = styled.div`
 const ListTitle = styled.p`
   margin: 0;
   margin-right: 0.5rem;
+  line-height: 1.5;
   font-weight: 700;
 `;
 
@@ -70,9 +75,11 @@ const ListContentContainer = styled.div<{ isContentShown: boolean }>`
   animation: ${({ isContentShown }) => (isContentShown ? 'fadeIn' : 'fadeout')}
     1s linear;
   transition: visibility 1s linear;
-  padding-right: 1rem;
+  padding: 1rem 1rem 0 0;
 `;
 
-const ListContent = styled.p``;
+const ListContent = styled.p`
+  line-height: 1.5;
+`;
 
 export default ToggleList;
