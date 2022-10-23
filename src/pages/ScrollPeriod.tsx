@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styled from 'styled-components';
 import { useScroll } from '../hooks/customHooks';
 import NewSequnce from '../components/animation/NewSequnce';
+import PeriodFAQ from './PeriodFAQ';
 
 const sceneInfo = [
   {
@@ -48,15 +49,10 @@ const ScrollPeriod = () => {
   let prevScrollHeight = 0;
 
   useEffect(() => {
-    console.log(currentSceneIndex);
-  }, [currentSceneIndex]);
-
-  useEffect(() => {
     prevScrollHeight = 0;
     for (let i = 0; i < currentSceneIndex; i++) {
       prevScrollHeight += sceneInfo[i]?.scrollHeight;
     }
-    console.log('prevScrollHeight', prevScrollHeight);
 
     if (
       scrollY >
@@ -113,12 +109,19 @@ const ScrollPeriod = () => {
           isCurrentScene={currentSceneIndex === 2}
         />
       </SceneWrapper>
+      <SceneWrapper>
+        <PeriodFAQ />
+      </SceneWrapper>
     </Main>
   );
 };
 
 const Main = styled.main``;
 
-const SceneWrapper = styled.div``;
+const SceneWrapper = styled.div`
+  &:last-child {
+    padding: 100vh 0 10vh 0;
+  }
+`;
 
 export default ScrollPeriod;
