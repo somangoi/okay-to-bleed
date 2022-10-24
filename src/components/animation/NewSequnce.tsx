@@ -142,7 +142,7 @@ const NewSequnce = ({
         wrapperHeight={sceneInfo.totalImagesCount * 20}
         currentScene={isCurrentScene}
       >
-        <Canvas ref={imageViewerRef}></Canvas>
+        <Canvas ref={imageViewerRef} isVisible={isVisible}></Canvas>
       </ImageWrapper>
     </>
   );
@@ -157,7 +157,8 @@ const ImageWrapper = styled.div<{
   visibility: ${({ currentScene }) => (currentScene ? 'visible' : 'hidden')};
 `;
 
-const Canvas = styled.canvas`
+const Canvas = styled.canvas<{ isVisible: boolean }>`
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   position: fixed;
   left: 50%;
   top: 50%;
