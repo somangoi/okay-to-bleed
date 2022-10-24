@@ -8,8 +8,6 @@ import PeriodFAQ from './PeriodFAQ';
 
 const sceneInfo = [
   {
-    sceneIndex: 0,
-    type: 'animation',
     scene: 'Intro',
     scrollHeight: 0,
     initialNumber: 0,
@@ -17,8 +15,6 @@ const sceneInfo = [
     prevScrollHeight: 0,
   },
   {
-    sceneIndex: 1,
-    type: 'animation',
     scene: 'Chapter1-1',
     scrollHeight: 0,
     initialNumber: 379,
@@ -26,8 +22,6 @@ const sceneInfo = [
     prevScrollHeight: 0,
   },
   {
-    sceneIndex: 2,
-    type: 'animation',
     scene: 'Chapter1-2',
     scrollHeight: 0,
     initialNumber: 748,
@@ -40,8 +34,8 @@ const ScrollPeriod = () => {
   const { scrollY } = useScroll();
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
   const introLoadTriggerRef = useRef<HTMLDivElement>(null);
-  const firstLoadTriggerRef = useRef<HTMLDivElement>(null);
-  const secondLoadTriggerRef = useRef<HTMLDivElement>(null);
+  const ch1_1LoadTriggerRef = useRef<HTMLDivElement>(null);
+  const ch1_2LoadTriggerRef = useRef<HTMLDivElement>(null);
 
   gsap.registerPlugin(ScrollTrigger);
   let prevScrollHeight = 0;
@@ -95,22 +89,22 @@ const ScrollPeriod = () => {
           loadTriggerRef={introLoadTriggerRef}
         />
       </SceneWrapper>
-      <LoadTrigger ref={firstLoadTriggerRef} />
-      <SceneWrapper id="first">
+      <LoadTrigger ref={ch1_1LoadTriggerRef} />
+      <SceneWrapper id="chapter1_1">
         <NewSequnce
           sceneInfo={sceneInfo[1]}
-          triggerRef={'#first'}
+          triggerRef={'#chapter1_1'}
           isCurrentScene={currentSceneIndex === 1}
-          loadTriggerRef={firstLoadTriggerRef}
+          loadTriggerRef={ch1_1LoadTriggerRef}
         />
       </SceneWrapper>
-      <LoadTrigger ref={secondLoadTriggerRef} />
-      <SceneWrapper id="second">
+      <LoadTrigger ref={ch1_2LoadTriggerRef} />
+      <SceneWrapper id="chapter1_2">
         <NewSequnce
           sceneInfo={sceneInfo[2]}
-          triggerRef={'#second'}
+          triggerRef={'#chapter1_2'}
           isCurrentScene={currentSceneIndex === 2}
-          loadTriggerRef={secondLoadTriggerRef}
+          loadTriggerRef={ch1_2LoadTriggerRef}
         />
       </SceneWrapper>
       <SceneWrapper>

@@ -11,8 +11,6 @@ interface ImageSequenceProps {
 }
 
 interface SceneInfoProps {
-  sceneIndex: number;
-  type: string;
   scene: string;
   scrollHeight: number;
   initialNumber: number;
@@ -111,7 +109,7 @@ const NewSequnce = ({
         snap: 'frame',
         ease: 'none',
         scrollTrigger: {
-          trigger: triggerRef, // 이건 트리거 필요할때 활성화
+          trigger: triggerRef,
           scrub: 0.5,
           start: 'top top',
           end: 'bottom top',
