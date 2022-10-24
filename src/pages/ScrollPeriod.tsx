@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styled from 'styled-components';
 import { useScroll } from '../hooks/customHooks';
+import { useTranslation } from 'react-i18next';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import NewSequnce from '../components/animation/NewSequnce';
 import PeriodFAQ from './PeriodFAQ';
+import Title from '../components/Title';
+import SubtitleBox from '../components/subtitle/SubtitleBox';
+import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
 
 const sceneInfo = [
   {
@@ -31,6 +35,7 @@ const sceneInfo = [
 ];
 
 const ScrollPeriod = () => {
+  const { t } = useTranslation('Period');
   const { scrollY } = useScroll();
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
   const introLoadTriggerRef = useRef<HTMLDivElement>(null);
@@ -80,6 +85,7 @@ const ScrollPeriod = () => {
 
   return (
     <Main>
+      <Title text={t('title')} />
       <LoadTrigger ref={introLoadTriggerRef} />
       <SceneWrapper id="intro">
         <NewSequnce
@@ -110,6 +116,10 @@ const ScrollPeriod = () => {
       <SceneWrapper>
         <PeriodFAQ />
       </SceneWrapper>
+      <SubtitleBox
+        subtitlesName="Ch1Subtitles"
+        subtitlesData={Ch1SubtitlesData}
+      />
     </Main>
   );
 };
