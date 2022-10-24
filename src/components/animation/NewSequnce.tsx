@@ -142,7 +142,10 @@ const NewSequnce = ({
         wrapperHeight={sceneInfo.totalImagesCount * 20}
         currentScene={isCurrentScene}
       >
-        <Canvas ref={imageViewerRef} isVisible={isVisible}></Canvas>
+        <Canvas
+          ref={imageViewerRef}
+          isVisible={isVisible && isCurrentScene}
+        ></Canvas>
       </ImageWrapper>
     </>
   );
