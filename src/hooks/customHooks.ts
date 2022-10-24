@@ -1,34 +1,5 @@
 import { debounce } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
-
-export const useLazyImageObserver = ({ src }: { src: string }) => {
-  const observerRef = useRef<IntersectionObserver>();
-  // const loadTriggerRef = useRef<HTMLDivElement>(null);
-
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const imgContainerRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries: IntersectionObserverEntry[], io: IntersectionObserver) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            io.unobserve(entry.target);
-            setImageSrc(src);
-          }
-        });
-      },
-    );
-
-    imgContainerRef.current &&
-      observerRef.current.observe(imgContainerRef.current);
-
-    return () => {
-      observerRef.current?.disconnect();
-    };
-  }, []);
-};
-
 interface stateProps {
   image: HTMLImageElement | undefined;
   status: string;
