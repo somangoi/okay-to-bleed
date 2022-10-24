@@ -37,15 +37,13 @@ const sceneInfo = [
 ];
 
 const ScrollPeriod = () => {
-  gsap.registerPlugin(ScrollTrigger);
   const { scrollY } = useScroll();
-
-  const introRef = useRef<HTMLDivElement>(null);
-  const firstRef = useRef<HTMLDivElement>(null);
-  const secondRef = useRef<HTMLDivElement>(null);
-
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
+  const introLoadTriggerRef = useRef<HTMLDivElement>(null);
+  const firstLoadTriggerRef = useRef<HTMLDivElement>(null);
+  const secondLoadTriggerRef = useRef<HTMLDivElement>(null);
 
+  gsap.registerPlugin(ScrollTrigger);
   let prevScrollHeight = 0;
 
   useEffect(() => {
@@ -88,25 +86,31 @@ const ScrollPeriod = () => {
 
   return (
     <Main>
-      <SceneWrapper ref={introRef} id="intro">
+      <LoadTrigger ref={introLoadTriggerRef} />
+      <SceneWrapper id="intro">
         <NewSequnce
           sceneInfo={sceneInfo[0]}
           triggerRef={'#intro'}
           isCurrentScene={currentSceneIndex === 0}
+          loadTriggerRef={introLoadTriggerRef}
         />
       </SceneWrapper>
-      <SceneWrapper ref={firstRef} id="first">
+      <LoadTrigger ref={firstLoadTriggerRef} />
+      <SceneWrapper id="first">
         <NewSequnce
           sceneInfo={sceneInfo[1]}
           triggerRef={'#first'}
           isCurrentScene={currentSceneIndex === 1}
+          loadTriggerRef={firstLoadTriggerRef}
         />
       </SceneWrapper>
-      <SceneWrapper ref={secondRef} id="second">
+      <LoadTrigger ref={secondLoadTriggerRef} />
+      <SceneWrapper id="second">
         <NewSequnce
           sceneInfo={sceneInfo[2]}
           triggerRef={'#second'}
           isCurrentScene={currentSceneIndex === 2}
+          loadTriggerRef={secondLoadTriggerRef}
         />
       </SceneWrapper>
       <SceneWrapper>
@@ -117,6 +121,13 @@ const ScrollPeriod = () => {
 };
 
 const Main = styled.main``;
+
+// 뷰 포인트 전에 json파일을 미리 로드하는 지점
+const LoadTrigger = styled.div`
+  height: 200vh;
+  margin-top: -200vh;
+  z-index: -99;
+`;
 
 const SceneWrapper = styled.div`
   &:last-child {

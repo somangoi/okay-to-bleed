@@ -1,12 +1,13 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { gsap } from 'gsap';
-
+import '@lottiefiles/lottie-player';
+import { CircularProgress, Box } from '@mui/material';
 interface ImageSequenceProps {
   sceneInfo: SceneInfoProps;
-  // triggerRef?: HTMLDivElement | null;
   triggerRef: string;
   isCurrentScene: boolean;
+  loadTriggerRef: React.RefObject<HTMLDivElement>;
 }
 
 interface SceneInfoProps {
@@ -24,82 +25,126 @@ const NewSequnce = ({
   sceneInfo,
   triggerRef,
   isCurrentScene,
+  loadTriggerRef,
 }: ImageSequenceProps) => {
-  const didEffect = useRef(false);
-  const imageViewer = useRef<HTMLCanvasElement>(null);
-  const imageScene = useRef(null);
+  const didEffectRef = useRef(false);
+  const imageViewerRef = useRef<HTMLCanvasElement>(null);
+  const imageSceneRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver>();
+
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isLoadingImages, setIsLoadingImages] = useState<boolean>(true);
+
+  const intersectionObserver = (
+    entries: IntersectionObserverEntry[],
+    io: IntersectionObserver,
+  ) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        io.unobserve(entry.target);
+        setIsVisible(true);
+      }
+    });
+  };
 
   useEffect(() => {
-    // prevent duplicating pin spacer
-    if (didEffect.current) return;
-    didEffect.current = true;
-
-    const pagesElement = imageScene?.current;
-    if (!pagesElement) return;
-
-    const pagesWrapperElement = imageViewer?.current;
-    if (!pagesWrapperElement) return;
-
-    const canvas = imageViewer.current;
-    if (canvas == null) return;
-
-    const context = canvas?.getContext('2d');
-    if (context == null) return;
-
-    const currentFrame = (index: number) =>
-      `png/${sceneInfo.scene}/${sceneInfo.scene}_${(
-        sceneInfo.initialNumber + index
-      )
-        .toString()
-        .padStart(5, '0')}.png`;
-
-    const images: HTMLImageElement[] = [];
-    const initialFrame = {
-      frame: 0,
-    };
-
-    for (let i = 0; i < sceneInfo.totalImagesCount; i++) {
-      const img = new Image();
-      img.src = currentFrame(i);
-      images.push(img);
-      img.onload = function () {
-        const inW = img.width;
-        const inH = img.height;
-
-        canvas.width = inW;
-        canvas.height = inH;
-      };
-    }
-
-    const render = () => {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(images[initialFrame.frame], 0, 0);
-    };
-
-    gsap.to(initialFrame, {
-      frame: sceneInfo.totalImagesCount - 1,
-      snap: 'frame',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: triggerRef, // 이건 트리거 필요할때 활성화
-        scrub: 0.5,
-        start: 'top top',
-        end: 'bottom top',
-      },
-      onUpdate: render,
-    });
-
-    images[0].onload = render;
+    observerRef.current = new IntersectionObserver(intersectionObserver);
+    loadTriggerRef.current &&
+      observerRef.current.observe(loadTriggerRef.current);
   }, []);
 
+  useEffect(() => {
+    if (isVisible) {
+      // prevent duplicating pin spacer
+      if (didEffectRef.current) return;
+      didEffectRef.current = true;
+
+      const pagesElement = imageSceneRef?.current;
+      if (!pagesElement) return;
+
+      const pagesWrapperElement = imageViewerRef?.current;
+      if (!pagesWrapperElement) return;
+
+      const canvas = imageViewerRef.current;
+      if (canvas == null) return;
+
+      const context = canvas?.getContext('2d');
+      if (context == null) return;
+
+      const currentFrame = (index: number) =>
+        `png/${sceneInfo.scene}/${sceneInfo.scene}_${(
+          sceneInfo.initialNumber + index
+        )
+          .toString()
+          .padStart(5, '0')}.png`;
+
+      const images: HTMLImageElement[] = [];
+      const initialFrame = {
+        frame: 0,
+      };
+
+      let loadedImageCount = 0;
+
+      for (let i = 0; i < sceneInfo.totalImagesCount; i++) {
+        const img = new Image();
+        img.src = currentFrame(i);
+        images.push(img);
+        img.onload = function () {
+          const inW = img.width;
+          const inH = img.height;
+          loadedImageCount++;
+          canvas.width = inW;
+          canvas.height = inH;
+          if (loadedImageCount + 1 === sceneInfo.totalImagesCount) {
+            setIsLoadingImages(false);
+          }
+        };
+      }
+
+      const render = () => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(images[initialFrame.frame], 0, 0);
+      };
+
+      gsap.to(initialFrame, {
+        frame: sceneInfo.totalImagesCount - 1,
+        snap: 'frame',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: triggerRef, // 이건 트리거 필요할때 활성화
+          scrub: 0.5,
+          start: 'top top',
+          end: 'bottom top',
+        },
+        onUpdate: render,
+      });
+
+      images[0].onload = render;
+    }
+  }, [isVisible]);
+
   return (
-    <ImageWrapper
-      ref={imageScene}
-      wrapperHeight={sceneInfo.totalImagesCount * 20}
-      currentScene={isCurrentScene}
-    >
-      <Canvas ref={imageViewer}></Canvas>
-    </ImageWrapper>
+    <>
+      {isLoadingImages && (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="100vh"
+          position="fixed"
+          left="calc(50% - 30px)"
+        >
+          <CircularProgress size={60} sx={{ color: '#fff' }} />
+        </Box>
+      )}
+      <ImageWrapper
+        ref={imageSceneRef}
+        wrapperHeight={sceneInfo.totalImagesCount * 20}
+        currentScene={isCurrentScene}
+      >
+        <Canvas ref={imageViewerRef}></Canvas>
+      </ImageWrapper>
+    </>
   );
 };
 
