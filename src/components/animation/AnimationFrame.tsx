@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import '@lottiefiles/lottie-player';
 import { create } from '@lottiefiles/lottie-interactivity';
@@ -8,17 +8,18 @@ import { CircularProgress, Box } from '@mui/material';
 type Props = {
   id: string;
   animationSrc: string;
-  virtualHeight: string;
-  stopOffset?: number;
+  virtualHeight: number;
   maxFrame: number;
+  stopOffset?: number;
+  currentScene: boolean;
 };
 
 function AnimationFrame(props: Props) {
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const [visible, setVisible] = React.useState<boolean>(false);
-  const observerRef = React.useRef<IntersectionObserver>();
-  const loadTriggerRef = React.useRef<HTMLDivElement>(null);
-  const lottieRef = React.useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(false);
+  const observerRef = useRef<IntersectionObserver>();
+  const loadTriggerRef = useRef<HTMLDivElement>(null);
+  const lottieRef = useRef<HTMLDivElement>(null);
   const wrapperId = props.id + '-wrapper';
   const lottieId = props.id;
   const stopOffset = props.stopOffset || 0;
@@ -76,6 +77,7 @@ function AnimationFrame(props: Props) {
         id={wrapperId}
         virtualHeight={props.virtualHeight}
         className="animation_wrapper"
+        currentScene={props.currentScene}
       >
         <Lottie>
           {loading && (
@@ -92,7 +94,7 @@ function AnimationFrame(props: Props) {
             <lottie-player
               id={lottieId}
               ref={lottieRef}
-              src={props.animationSrc}
+              src={animationSrc}
               mode="normal"
             ></lottie-player>
           )}
@@ -109,12 +111,17 @@ const LoadTrigger = styled.div`
   z-index: -99;
 `;
 
-const Wrapper = styled.div<{ virtualHeight: string }>`
-  height: ${({ virtualHeight }) => virtualHeight || '100vh'};
+const Wrapper = styled.div<{ virtualHeight: number; currentScene: boolean }>`
+  height: ${({ virtualHeight }) => `${virtualHeight}px`};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  visibility: ${({ currentScene }) => (currentScene ? 'visible' : 'hidden')};
 `;
 
 const Lottie = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0px;
   width: 100%;
   height: 100vh;
