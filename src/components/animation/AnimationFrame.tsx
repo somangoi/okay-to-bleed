@@ -117,7 +117,8 @@ const Wrapper = styled.div<{ virtualHeight: number; currentScene: boolean }>`
   align-items: center;
   justify-content: center;
   position: relative;
-  visibility: ${({ currentScene }) => (currentScene ? 'visible' : 'hidden')};
+  opacity: ${({ currentScene }) => (currentScene ? '1' : '0')};
+  transition: opacity 0.7s ease-in-out;
 `;
 
 const Lottie = styled.div`
