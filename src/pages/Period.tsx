@@ -43,7 +43,7 @@ const sceneInfo = [
     sceneType: 'animation',
     id: 'lottie-2-2',
     animationSrc: '/anim/chapter2-2.json',
-    maxFrame: 40,
+    maxFrame: 150,
     scrollHeight: 0,
   },
   {
