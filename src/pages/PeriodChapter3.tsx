@@ -6,7 +6,6 @@ import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
-import NextChapterButton from '../components/button/NextChapterButton';
 
 const sceneInfo = [
   {
@@ -144,7 +143,6 @@ function PeriodChapter3() {
         subtitlesName="Ch1Subtitles"
         subtitlesData={Ch1SubtitlesData}
       />
-      <NextChapterButton page={'chapter4'} />
     </main>
   );
 }
