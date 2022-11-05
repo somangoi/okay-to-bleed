@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 function App() {
   RouteChangeTracker();
-  const { t } = useTranslation('Common');
+  const { t } = useTranslation('Period');
 
   return (
     <div className="App">
