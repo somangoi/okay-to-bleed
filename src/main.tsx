@@ -10,7 +10,9 @@ const TRACKING_ID = import.meta.env.VITE_REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
 
 ReactGA.initialize(TRACKING_ID!);
 
-const Period = lazy(() => import('./pages/Period'));
+const PeriodChapter1 = lazy(() => import('./pages/PeriodChapter1'));
+const PeriodChapter2 = lazy(() => import('./pages/PeriodChapter2'));
+const PeriodChapter3 = lazy(() => import('./pages/PeriodChapter3'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Support = lazy(() => import('./pages/Support'));
 
@@ -20,7 +22,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Suspense fallback={<LinearProgress style={{ width: '100%' }} />}>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route path="/" element={<Period />} />
+            <Route path="/" element={<PeriodChapter1 />} />
+            <Route path="/chapter2" element={<PeriodChapter2 />} />
+            <Route path="/chapter3" element={<PeriodChapter3 />} />
             <Route path="contact" element={<Contact />} />
             <Route path="support" element={<Support />} />
             <Route
