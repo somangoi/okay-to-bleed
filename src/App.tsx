@@ -8,6 +8,8 @@ import {
 import '../src/config/i18n/i18n';
 import RouteChangeTracker from './config/ga/RouteChangeTracker';
 import { ScrollToTopButton } from './components/button/ScrollToTopButton';
+import ChapterMenu from './components/ChapterMenu';
+import { IconButton } from '@mui/material';
 
 function App() {
   RouteChangeTracker();
@@ -17,13 +19,20 @@ function App() {
       <h1>Okay to bleed</h1>
       <nav>
         <Link to="/">
-          <HomeRounded />
+          <IconButton>
+            <HomeRounded />
+          </IconButton>
         </Link>
+        <ChapterMenu></ChapterMenu>
         <Link to="/contact">
-          <ContactSupportRounded />
+          <IconButton>
+            <ContactSupportRounded />
+          </IconButton>
         </Link>
         <Link to="/support">
-          <VolunteerActivismRounded />
+          <IconButton>
+            <VolunteerActivismRounded />
+          </IconButton>
         </Link>
       </nav>
       <Outlet />

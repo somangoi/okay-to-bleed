@@ -4,8 +4,7 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  src: local('Montserrat'),
-    url('Montserrat.eot') format('embedded-opentype');
+  src: local('Montserrat'), url('Montserrat.eot') format('embedded-opentype');
   unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
 }
 
@@ -13,14 +12,14 @@
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
-  src: local('NotoSansKR'),
-    url('NotoSansKR.eot') format('embedded-opentype');
+  src: local('NotoSansKR'), url('NotoSansKR.eot') format('embedded-opentype');
   unicode-range: U+AC00-D7A3;
 }
 
 #root {
   max-width: 1280px;
-  font-family: 'Montserrat', 'Noto Sans KR', Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Noto Sans KR', Inter, Avenir, Helvetica, Arial,
+    sans-serif;
   margin: 0 auto;
   white-space: pre-line;
 }
@@ -53,17 +52,16 @@ a {
   color: #fff;
   text-decoration: none;
   outline: none;
-  margin-right: 1rem;
+}
+
+nav button {
+  color: #fff !important;
 }
 
 a:hover,
 a:active {
   text-decoration: none;
   color: #fff;
-}
-
-a:last-child {
-  margin-right: 0;
 }
 
 footer {
