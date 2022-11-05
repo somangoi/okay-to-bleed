@@ -48,7 +48,7 @@ nav {
   z-index: 100;
 }
 
-a {
+footer a {
   color: #fff;
   text-decoration: none;
   outline: none;
@@ -58,8 +58,8 @@ nav button {
   color: #fff !important;
 }
 
-a:hover,
-a:active {
+footer a:hover,
+footer a:active {
   text-decoration: none;
   color: #fff;
 }

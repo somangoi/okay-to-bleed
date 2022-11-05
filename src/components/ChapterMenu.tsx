@@ -1,12 +1,14 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { BookmarksRounded } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import './ChapterMenu.css';
 
 function ChapterMenu() {
+  const { t } = useTranslation('Common');
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -35,9 +37,14 @@ function ChapterMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem>Ch.1 Intro</MenuItem>
-        <MenuItem>Ch.2 What is period?</MenuItem>
-        <MenuItem>Ch.3 Intro</MenuItem>
+        <MenuItem>
+          <Link to="/">{t('intro')}</Link>
+        </MenuItem>
+        <MenuItem>Ch.1 {t('ch1')}</MenuItem>
+        <MenuItem>Ch.2 {t('ch2')}</MenuItem>
+        <MenuItem>Ch.3 {t('ch3')}</MenuItem>
+        <MenuItem>Ch.4 {t('ch4')}</MenuItem>
+        <MenuItem>{t('end')}</MenuItem>
       </Menu>
     </a>
   );
