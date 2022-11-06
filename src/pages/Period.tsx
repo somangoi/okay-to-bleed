@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
 import ChapterNavigation from '../components/nav/ChapterNavigation';
+import FloatingText from '../components/FloatingText';
 
 type SceneInfo = {
   sceneType: string;
@@ -18,6 +19,18 @@ type SceneInfo = {
   maxFrame: number;
   scrollHeight: number;
   stopOffset?: number;
+}[];
+
+type TextInfo = {
+  id: string;
+  text: string;
+  fontSize: number;
+  fontColor: string;
+  fontWeight: number;
+  start: number;
+  end: number;
+  xPos: number;
+  yPos: number;
 }[];
 
 type PeriodProps = { chapter: number };
@@ -135,6 +148,58 @@ function Period({ chapter }: PeriodProps) {
   const { scrollY } = useScroll();
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
   const [sceneInfo, setSceneInfo] = useState<SceneInfo>([]);
+  const [textInfo, setTextInfo] = useState<TextInfo>([]);
+
+  const textInfo1 = [
+    {
+      id: 'test',
+      text: 'test',
+      fontSize: 30,
+      fontColor: 'yellow',
+      fontWeight: 600,
+      start: 0,
+      end: 900,
+      xPos: 50,
+      yPos: 50,
+    },
+    {
+      id: 'test2',
+      text: 'test22222',
+      fontSize: 50,
+      fontColor: 'red',
+      fontWeight: 600,
+      start: 1500,
+      end: 1800,
+      xPos: 20,
+      yPos: 30,
+    },
+  ];
+  const textInfo2 = [
+    {
+      id: 'period',
+      text: 'period',
+      fontSize: 30,
+      fontColor: 'yellow',
+      fontWeight: 600,
+      start: 800,
+      end: 830,
+      xPos: 50,
+      yPos: 50,
+    },
+  ];
+  const textInfo3 = [
+    {
+      id: 'test3',
+      text: 'test',
+      fontSize: 30,
+      fontColor: 'yellow',
+      fontWeight: 600,
+      start: 800,
+      end: 830,
+      xPos: 50,
+      yPos: 50,
+    },
+  ];
 
   let prevScrollHeight = 0;
 
@@ -163,6 +228,7 @@ function Period({ chapter }: PeriodProps) {
       }
 
       // 새로고침시, current scene index 리셋
+      window.scrollTo({ top: 0 });
       let totalScrollHeight = 0;
       for (let i = 0; i < sceneInfo.length; i++) {
         totalScrollHeight += sceneInfo[i].scrollHeight;
@@ -179,6 +245,9 @@ function Period({ chapter }: PeriodProps) {
   useEffect(() => {
     setSceneInfo(
       chapter === 1 ? sceneInfo1 : chapter === 2 ? sceneInfo2 : sceneInfo3,
+    );
+    setTextInfo(
+      chapter === 1 ? textInfo1 : chapter === 2 ? textInfo2 : textInfo3,
     );
   }, [chapter]);
 
@@ -218,6 +287,21 @@ function Period({ chapter }: PeriodProps) {
               />
             );
         }
+      })}
+      {textInfo.map((text, index) => {
+        return (
+          <FloatingText
+            text={text.text}
+            fontSize={text.fontSize}
+            fontColor={text.fontColor}
+            fontWeight={text.fontWeight}
+            start={text.start}
+            end={text.end}
+            xPos={text.xPos}
+            yPos={text.yPos}
+            key={text.id}
+          />
+        );
       })}
       <SubtitleBox
         subtitlesName={`Ch${chapter}Subtitles`}
