@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Animation from '../components/animation/AnimationFrame';
 import SubtitleBox from '../components/subtitle/SubtitleBox';
 import Title from '../components/Title';
@@ -185,7 +184,7 @@ function Period({ chapter }: PeriodProps) {
 
   return (
     <main style={{ padding: '1rem 0' }}>
-      <Title text={t(`Chapter${chapter}Title`)} />
+      <Title text={t(`Chapter${chapter}-1Title`)} />
       {sceneInfo.map((scene, index) => {
         switch (scene.sceneType) {
           case 'animation':
