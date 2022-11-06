@@ -24,7 +24,7 @@ type SceneInfo = {
 type TextInfo = {
   id: string;
   text: string;
-  fontSize: number;
+  fontSize: string;
   fontColor: string;
   fontWeight: number;
   start: number;
@@ -152,52 +152,41 @@ function Period({ chapter }: PeriodProps) {
 
   const textInfo1 = [
     {
-      id: 'test',
-      text: 'test',
-      fontSize: 30,
-      fontColor: 'yellow',
+      id: 'title1-2',
+      text: t('Chapter1-2Title'),
+      fontSize: '2rem',
+      fontColor: 'white',
       fontWeight: 600,
-      start: 0,
-      end: 900,
-      xPos: 50,
-      yPos: 50,
-    },
-    {
-      id: 'test2',
-      text: 'test22222',
-      fontSize: 50,
-      fontColor: 'red',
-      fontWeight: 600,
-      start: 1500,
-      end: 1800,
-      xPos: 20,
-      yPos: 30,
+      start: 7700,
+      end: 22300,
+      xPos: 35,
+      yPos: 15,
     },
   ];
   const textInfo2 = [
     {
-      id: 'period',
-      text: 'period',
-      fontSize: 30,
-      fontColor: 'yellow',
-      fontWeight: 600,
-      start: 800,
-      end: 830,
-      xPos: 50,
-      yPos: 50,
+      id: 'empty',
+      text: '',
+      fontSize: '0',
+      fontColor: 'white',
+      fontWeight: 0,
+      start: 0,
+      end: 0,
+      xPos: 0,
+      yPos: 0,
     },
   ];
   const textInfo3 = [
     {
-      id: 'test3',
-      text: 'test',
-      fontSize: 30,
-      fontColor: 'yellow',
-      fontWeight: 600,
-      start: 800,
-      end: 830,
-      xPos: 50,
-      yPos: 50,
+      id: 'empty',
+      text: '',
+      fontSize: '0',
+      fontColor: 'white',
+      fontWeight: 0,
+      start: 0,
+      end: 0,
+      xPos: 0,
+      yPos: 0,
     },
   ];
 

@@ -11,7 +11,7 @@ import {
 
 type Props = {
   text: string;
-  fontSize: number;
+  fontSize: string;
   fontColor: string;
   fontWeight: number;
   start: number;
@@ -59,6 +59,7 @@ const Wrapper = styled.div<{ xPos: number; yPos: number }>`
   position: fixed;
   top: ${({ yPos }) => `${yPos}%`};
   left: ${({ xPos }) => `${xPos}%`};
+  transform: translate(-50%, -50%);
   z-inex: 999;
 `;
 
