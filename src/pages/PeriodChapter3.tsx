@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Animation from '../components/animation/AnimationFrame';
 import SubtitleBox from '../components/subtitle/SubtitleBox';
 import Title from '../components/Title';
-import PeriodFAQ from './PeriodFAQ';
 import Ch3SubtitlesData from '../config/i18n/en/Ch3Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';

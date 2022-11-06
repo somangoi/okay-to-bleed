@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import './ChapterMenu.css';
 
 function ChapterMenu() {
-  const { t } = useTranslation('Common');
+  const { t } = useTranslation('Period');
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -37,14 +37,15 @@ function ChapterMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem>
-          <Link to="/">{t('intro')}</Link>
-        </MenuItem>
-        <MenuItem>Ch.1 {t('ch1')}</MenuItem>
-        <MenuItem>Ch.2 {t('ch2')}</MenuItem>
-        <MenuItem>Ch.3 {t('ch3')}</MenuItem>
-        <MenuItem>Ch.4 {t('ch4')}</MenuItem>
-        <MenuItem>{t('end')}</MenuItem>
+        <Link to="/">
+          <MenuItem>Ch.1 {t('Chapter1-1Title')}</MenuItem>
+        </Link>
+        <Link to="/chapter2">
+          <MenuItem>Ch.2 {t('Chapter2-1Title')}</MenuItem>
+        </Link>
+        <Link to="/chapter3">
+          <MenuItem>Ch.3 {t('Chapter3-1Title')}</MenuItem>
+        </Link>
       </Menu>
     </a>
   );

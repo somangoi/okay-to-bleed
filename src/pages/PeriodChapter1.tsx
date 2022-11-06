@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Animation from '../components/animation/AnimationFrame';
 import SubtitleBox from '../components/subtitle/SubtitleBox';
 import Title from '../components/Title';
