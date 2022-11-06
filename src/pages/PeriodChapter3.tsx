@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Animation from '../components/animation/AnimationFrame';
 import SubtitleBox from '../components/subtitle/SubtitleBox';
 import Title from '../components/Title';
-import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
+import Ch3SubtitlesData from '../config/i18n/en/Ch3Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
@@ -141,8 +140,8 @@ function PeriodChapter3() {
         }
       })}
       <SubtitleBox
-        subtitlesName="Ch1Subtitles"
-        subtitlesData={Ch1SubtitlesData}
+        subtitlesName="Ch3Subtitles"
+        subtitlesData={Ch3SubtitlesData}
       />
       <NextChapterButton page={3} />
     </main>
