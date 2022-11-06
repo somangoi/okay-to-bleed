@@ -28,34 +28,10 @@
   padding: 2rem;
 }
 
-h1 {
-  font-size: 1.2rem;
-  color: white;
-  padding: 1.5rem !important;
-  position: fixed;
-  margin: 0;
-  top: 0.5rem;
-  left: 0.5rem;
-  font-weight: 400;
-  z-index: 100;
-}
-
-nav {
-  padding: 1.5rem;
-  position: fixed;
-  top: 0.5rem;
-  right: 0.5rem;
-  z-index: 100;
-}
-
 footer a {
   color: #fff;
   text-decoration: none;
   outline: none;
-}
-
-nav button {
-  color: #fff !important;
 }
 
 footer a:hover,

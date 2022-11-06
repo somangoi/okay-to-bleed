@@ -2,12 +2,76 @@ import React, { useEffect, useState } from 'react';
 import Animation from '../components/animation/AnimationFrame';
 import SubtitleBox from '../components/subtitle/SubtitleBox';
 import Title from '../components/Title';
+import PeriodFAQ from './PeriodFAQ';
+import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
+import Ch2SubtitlesData from '../config/i18n/en/Ch2Subtitles.json';
 import Ch3SubtitlesData from '../config/i18n/en/Ch3Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
+import ChapterNavigation from '../components/nav/ChapterNavigation';
 
-const sceneInfo = [
+type SceneInfo = {
+  sceneType: string;
+  id: string;
+  animationSrc: string;
+  maxFrame: number;
+  scrollHeight: number;
+  stopOffset?: number;
+}[];
+
+type PeriodProps = { chapter: number };
+
+const sceneInfo1 = [
+  {
+    sceneType: 'animation',
+    id: 'lottie-1-1',
+    animationSrc: '/anim/chapter1-1.json',
+    maxFrame: 386,
+    scrollHeight: 0,
+    stopOffset: 0.1,
+  },
+  {
+    sceneType: 'animation',
+    id: 'lottie-1-2',
+    animationSrc: '/anim/chapter1-2.json',
+    maxFrame: 725,
+    scrollHeight: 0,
+  },
+];
+
+const sceneInfo2 = [
+  {
+    sceneType: 'animation',
+    id: 'lottie-2-1',
+    animationSrc: '/anim/chapter2-1.json',
+    maxFrame: 879,
+    scrollHeight: 0,
+  },
+  {
+    sceneType: 'faq',
+    id: 'faq',
+    maxFrame: 200,
+    animationSrc: '',
+    scrollHeight: 0,
+  },
+  {
+    sceneType: 'animation',
+    id: 'lottie-2-2',
+    animationSrc: '/anim/chapter2-2.json',
+    maxFrame: 150,
+    scrollHeight: 0,
+  },
+  {
+    sceneType: 'animation',
+    id: 'lottie-2-3',
+    animationSrc: '/anim/chapter2-3.json',
+    maxFrame: 424,
+    scrollHeight: 0,
+  },
+];
+
+const sceneInfo3 = [
   {
     sceneType: 'animation',
     id: 'lottie-3-1',
@@ -66,10 +130,11 @@ const sceneInfo = [
   },
 ];
 
-function PeriodChapter3() {
+function Period({ chapter }: PeriodProps) {
   const { t } = useTranslation('Period');
   const { scrollY } = useScroll();
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
+  const [sceneInfo, setSceneInfo] = useState<SceneInfo>([]);
 
   let prevScrollHeight = 0;
 
@@ -109,11 +174,17 @@ function PeriodChapter3() {
     };
 
     setScrollHeight();
-  }, []);
+  }, [sceneInfo]);
+
+  useEffect(() => {
+    setSceneInfo(
+      chapter === 1 ? sceneInfo1 : chapter === 2 ? sceneInfo2 : sceneInfo3,
+    );
+  }, [chapter]);
 
   return (
     <main style={{ padding: '1rem 0' }}>
-      <Title text={t('Chapter3-1Title')} />
+      <Title text={t(`Chapter${chapter}-1Title`)} />
       {sceneInfo.map((scene, index) => {
         switch (scene.sceneType) {
           case 'animation':
@@ -123,7 +194,16 @@ function PeriodChapter3() {
                 animationSrc={scene.animationSrc}
                 virtualHeight={scene.scrollHeight}
                 maxFrame={scene.maxFrame}
-                // stopOffset={scene.stopOffset}
+                stopOffset={scene.stopOffset}
+                currentScene={currentSceneIndex === index}
+                key={scene.id}
+              />
+            );
+          case 'faq':
+            return (
+              <PeriodFAQ
+                virtualHeight={scene.scrollHeight}
+                maxFrame={scene.maxFrame}
                 currentScene={currentSceneIndex === index}
                 key={scene.id}
               />
@@ -140,11 +220,18 @@ function PeriodChapter3() {
         }
       })}
       <SubtitleBox
-        subtitlesName="Ch3Subtitles"
-        subtitlesData={Ch3SubtitlesData}
+        subtitlesName={`Ch${chapter}Subtitles`}
+        subtitlesData={
+          chapter === 1
+            ? Ch1SubtitlesData
+            : chapter === 2
+            ? Ch2SubtitlesData
+            : Ch3SubtitlesData
+        }
       />
+      <ChapterNavigation chapter={chapter} />
     </main>
   );
 }
 
-export default React.memo(PeriodChapter3);
+export default React.memo(Period);
