@@ -26,7 +26,7 @@ function ChapterMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <BookmarksRounded />
+        <BookmarksRounded fontSize="small" />
       </IconButton>
       <Menu
         id="chapter-menu"
