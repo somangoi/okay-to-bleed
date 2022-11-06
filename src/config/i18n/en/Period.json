@@ -1,14 +1,15 @@
 {
   "Title": "Okay to bleed!",
-  "Chapter1-1Title": "What is Period?",
+  "Chapter1Title": "What is Period?",
   "Chapter1-2Title": "Why Do We Have a Period?",
   "Chapter2-1Title": "What are Symptoms before or during the Period?",
   "Chapter2-2Title": "",
   "Chapter2-3Title": "",
-  "Chapter3-1Title": "My period has just begun. What should I do?",
+  "Chapter3Title": "My period has just begun. What should I do?",
   "Chapter3-2Title": "",
-  "Chapter4-1Title": "How to Manage Our Daily Lives during the Period?",
+  "Chapter4Title": "How to Manage Our Daily Lives during the Period?",
   "Chapter4-2Title": "",
   "NextPage": "Next page",
-  "PreviousPage": "Previous page"
+  "Next": "Next",
+  "Back": "Back"
 }

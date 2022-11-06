@@ -8,8 +8,20 @@ import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
+import ChapterNavigation from '../components/nav/ChapterNavigation';
 
-const sceneInfo = [
+type SceneInfo = {
+  sceneType: string;
+  id: string;
+  animationSrc: string;
+  maxFrame: number;
+  scrollHeight: number;
+  stopOffset?: number;
+}[];
+
+type PeriodProps = { chapter: number };
+
+const sceneInfo1 = [
   {
     sceneType: 'animation',
     id: 'lottie-1-1',
@@ -25,6 +37,9 @@ const sceneInfo = [
     maxFrame: 725,
     scrollHeight: 0,
   },
+];
+
+const sceneInfo2 = [
   {
     sceneType: 'animation',
     id: 'lottie-2-1',
@@ -53,6 +68,9 @@ const sceneInfo = [
     maxFrame: 424,
     scrollHeight: 0,
   },
+];
+
+const sceneInfo3 = [
   {
     sceneType: 'animation',
     id: 'lottie-3-1',
@@ -111,10 +129,11 @@ const sceneInfo = [
   },
 ];
 
-function Period() {
+function Period({ chapter }: PeriodProps) {
   const { t } = useTranslation('Period');
   const { scrollY } = useScroll();
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
+  const [sceneInfo, setSceneInfo] = useState<SceneInfo>([]);
 
   let prevScrollHeight = 0;
 
@@ -154,11 +173,17 @@ function Period() {
     };
 
     setScrollHeight();
-  }, []);
+  }, [sceneInfo]);
+
+  useEffect(() => {
+    setSceneInfo(
+      chapter === 1 ? sceneInfo1 : chapter === 2 ? sceneInfo2 : sceneInfo3,
+    );
+  }, [chapter]);
 
   return (
     <main style={{ padding: '1rem 0' }}>
-      <Title text={t('title')} />
+      <Title text={t(`Chapter${chapter}Title`)} />
       {sceneInfo.map((scene, index) => {
         switch (scene.sceneType) {
           case 'animation':
@@ -197,6 +222,7 @@ function Period() {
         subtitlesName="Ch1Subtitles"
         subtitlesData={Ch1SubtitlesData}
       />
+      <ChapterNavigation chapter={chapter} />
     </main>
   );
 }
