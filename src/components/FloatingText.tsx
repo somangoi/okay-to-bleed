@@ -16,12 +16,12 @@ type Props = {
   fontWeight: number;
   start: number;
   end: number;
-  xPos: number;
-  yPos: number;
+  top: string;
+  left: string;
 };
 
 function FloatingText(props: Props) {
-  const { text, fontSize, fontColor, fontWeight, start, end, xPos, yPos } =
+  const { text, fontSize, fontColor, fontWeight, start, end, top, left } =
     props;
   const [visible, setVisible] = useState<boolean>(false);
   const { scrollY } = useScroll();
@@ -46,7 +46,7 @@ function FloatingText(props: Props) {
 
   return (
     <Fade in={visible}>
-      <Wrapper xPos={xPos} yPos={yPos}>
+      <Wrapper top={top} left={left}>
         <ThemeProvider theme={theme}>
           <Typography variant="h1">{text}</Typography>
         </ThemeProvider>
@@ -55,10 +55,10 @@ function FloatingText(props: Props) {
   );
 }
 
-const Wrapper = styled.div<{ xPos: number; yPos: number }>`
+const Wrapper = styled.div<{ top: string; left: string }>`
   position: fixed;
-  top: ${({ yPos }) => `${yPos}%`};
-  left: ${({ xPos }) => `${xPos}%`};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
   transform: translate(-50%, -50%);
   z-inex: 999;
 `;

@@ -29,8 +29,8 @@ type TextInfo = {
   fontWeight: number;
   start: number;
   end: number;
-  xPos: number;
-  yPos: number;
+  top: string;
+  left: string;
 }[];
 
 type PeriodProps = { chapter: number };
@@ -159,8 +159,8 @@ function Period({ chapter }: PeriodProps) {
       fontWeight: 600,
       start: 7700,
       end: 22300,
-      xPos: 35,
-      yPos: 15,
+      top: '7rem',
+      left: '40%',
     },
   ];
   const textInfo2 = [
@@ -172,8 +172,8 @@ function Period({ chapter }: PeriodProps) {
       fontWeight: 0,
       start: 0,
       end: 0,
-      xPos: 0,
-      yPos: 0,
+      top: '0',
+      left: '0',
     },
   ];
   const textInfo3 = [
@@ -185,8 +185,8 @@ function Period({ chapter }: PeriodProps) {
       fontWeight: 0,
       start: 0,
       end: 0,
-      xPos: 0,
-      yPos: 0,
+      top: '0',
+      left: '0',
     },
   ];
 
@@ -286,8 +286,8 @@ function Period({ chapter }: PeriodProps) {
             fontWeight={text.fontWeight}
             start={text.start}
             end={text.end}
-            xPos={text.xPos}
-            yPos={text.yPos}
+            top={text.top}
+            left={text.left}
             key={text.id}
           />
         );
