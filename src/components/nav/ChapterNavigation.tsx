@@ -4,6 +4,7 @@ import { Button, MobileStepper } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const ChapterNavigation = ({ chapter }: any) => {
   const theme = useTheme();
@@ -13,6 +14,7 @@ const ChapterNavigation = ({ chapter }: any) => {
   return (
     <NavigationContainer>
       <MobileStepper
+        sx={{ background: 'rgba(255,255,255,0.6)' }}
         variant="text"
         steps={maxSteps}
         position="static"
@@ -26,7 +28,6 @@ const ChapterNavigation = ({ chapter }: any) => {
             }}
             disabled={chapter === maxSteps}
           >
-            Next
             {theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
             ) : (
@@ -48,7 +49,6 @@ const ChapterNavigation = ({ chapter }: any) => {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
           </Button>
         }
       />
