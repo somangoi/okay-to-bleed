@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
 import ChapterNavigation from '../components/nav/ChapterNavigation';
+import FloatingText from '../components/FloatingText';
 
 type SceneInfo = {
   sceneType: string;
@@ -18,6 +19,18 @@ type SceneInfo = {
   maxFrame: number;
   scrollHeight: number;
   stopOffset?: number;
+}[];
+
+type TextInfo = {
+  id: string;
+  text: string;
+  fontSize: string;
+  fontColor: string;
+  fontWeight: number;
+  start: number;
+  end: number;
+  top: string;
+  left: string;
 }[];
 
 type PeriodProps = { chapter: number };
@@ -135,6 +148,47 @@ function Period({ chapter }: PeriodProps) {
   const { scrollY } = useScroll();
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
   const [sceneInfo, setSceneInfo] = useState<SceneInfo>([]);
+  const [textInfo, setTextInfo] = useState<TextInfo>([]);
+
+  const textInfo1 = [
+    {
+      id: 'title1-2',
+      text: t('Chapter1-2Title'),
+      fontSize: '2rem',
+      fontColor: 'white',
+      fontWeight: 600,
+      start: 7700,
+      end: 22300,
+      top: '7rem',
+      left: '40%',
+    },
+  ];
+  const textInfo2 = [
+    {
+      id: 'empty',
+      text: '',
+      fontSize: '0',
+      fontColor: 'white',
+      fontWeight: 0,
+      start: 0,
+      end: 0,
+      top: '0',
+      left: '0',
+    },
+  ];
+  const textInfo3 = [
+    {
+      id: 'empty',
+      text: '',
+      fontSize: '0',
+      fontColor: 'white',
+      fontWeight: 0,
+      start: 0,
+      end: 0,
+      top: '0',
+      left: '0',
+    },
+  ];
 
   let prevScrollHeight = 0;
 
@@ -163,6 +217,7 @@ function Period({ chapter }: PeriodProps) {
       }
 
       // 새로고침시, current scene index 리셋
+      window.scrollTo({ top: 0 });
       let totalScrollHeight = 0;
       for (let i = 0; i < sceneInfo.length; i++) {
         totalScrollHeight += sceneInfo[i].scrollHeight;
@@ -179,6 +234,9 @@ function Period({ chapter }: PeriodProps) {
   useEffect(() => {
     setSceneInfo(
       chapter === 1 ? sceneInfo1 : chapter === 2 ? sceneInfo2 : sceneInfo3,
+    );
+    setTextInfo(
+      chapter === 1 ? textInfo1 : chapter === 2 ? textInfo2 : textInfo3,
     );
   }, [chapter]);
 
@@ -218,6 +276,21 @@ function Period({ chapter }: PeriodProps) {
               />
             );
         }
+      })}
+      {textInfo.map((text, index) => {
+        return (
+          <FloatingText
+            text={text.text}
+            fontSize={text.fontSize}
+            fontColor={text.fontColor}
+            fontWeight={text.fontWeight}
+            start={text.start}
+            end={text.end}
+            top={text.top}
+            left={text.left}
+            key={text.id}
+          />
+        );
       })}
       <SubtitleBox
         subtitlesName={`Ch${chapter}Subtitles`}
