@@ -96,7 +96,7 @@ function PeriodChapter1() {
         subtitlesName="Ch1Subtitles"
         subtitlesData={Ch1SubtitlesData}
       />
-      <NextChapterButton page={'chapter2'} />
+      <NextChapterButton page={1} />
     </main>
   );
 }

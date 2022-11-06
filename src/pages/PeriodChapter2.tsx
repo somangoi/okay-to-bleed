@@ -7,7 +7,6 @@ import PeriodFAQ from './PeriodFAQ';
 import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
-import SanitaryProducts from './SanitaryProducts';
 import NextChapterButton from '../components/button/NextChapterButton';
 
 const sceneInfo = [
@@ -98,7 +97,6 @@ function PeriodChapter2() {
                 animationSrc={scene.animationSrc}
                 virtualHeight={scene.scrollHeight}
                 maxFrame={scene.maxFrame}
-                // stopOffset={scene.stopOffset}
                 currentScene={currentSceneIndex === index}
                 key={scene.id}
               />
@@ -118,7 +116,7 @@ function PeriodChapter2() {
         subtitlesName="Ch1Subtitles"
         subtitlesData={Ch1SubtitlesData}
       />
-      <NextChapterButton page={'chapter3'} />
+      <NextChapterButton page={2} />
     </main>
   );
 }

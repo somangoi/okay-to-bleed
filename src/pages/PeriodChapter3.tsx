@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Animation from '../components/animation/AnimationFrame';
 import SubtitleBox from '../components/subtitle/SubtitleBox';
 import Title from '../components/Title';
-import PeriodFAQ from './PeriodFAQ';
 import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
+import NextChapterButton from '../components/button/NextChapterButton';
 
 const sceneInfo = [
   {
@@ -125,7 +125,6 @@ function PeriodChapter3() {
                 animationSrc={scene.animationSrc}
                 virtualHeight={scene.scrollHeight}
                 maxFrame={scene.maxFrame}
-                // stopOffset={scene.stopOffset}
                 currentScene={currentSceneIndex === index}
                 key={scene.id}
               />
@@ -145,6 +144,7 @@ function PeriodChapter3() {
         subtitlesName="Ch1Subtitles"
         subtitlesData={Ch1SubtitlesData}
       />
+      <NextChapterButton page={3} />
     </main>
   );
 }
