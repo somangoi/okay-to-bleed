@@ -129,6 +129,12 @@ const PcNavigationContainer = styled.div`
   justify-content: center;
   padding-top: 50px;
 
+  .MuiStep-root {
+    svg {
+      cursor: pointer;
+    }
+  }
+
   .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
     color: rgba(0, 0, 0, 0.38);
   }
@@ -139,6 +145,7 @@ const PcNavigationContainer = styled.div`
 
   .css-qivjh0-MuiStepLabel-label.Mui-active {
     color: #fff !important;
+    cursor: pointer;
   }
 `;
 
