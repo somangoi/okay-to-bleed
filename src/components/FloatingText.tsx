@@ -18,11 +18,21 @@ type Props = {
   end: number;
   top: string;
   left: string;
+  centerAlign?: boolean;
 };
 
 function FloatingText(props: Props) {
-  const { text, fontSize, fontColor, fontWeight, start, end, top, left } =
-    props;
+  const {
+    text,
+    fontSize,
+    fontColor,
+    fontWeight,
+    start,
+    end,
+    top,
+    left,
+    centerAlign,
+  } = props;
   const [visible, setVisible] = useState<boolean>(false);
   const { scrollY } = useScroll();
 
@@ -32,6 +42,7 @@ function FloatingText(props: Props) {
         fontSize: fontSize,
         color: fontColor,
         fontWeight: fontWeight,
+        wordBreak: 'keep-all',
       },
     },
   });
@@ -46,7 +57,7 @@ function FloatingText(props: Props) {
 
   return (
     <Fade in={visible}>
-      <Wrapper top={top} left={left}>
+      <Wrapper top={top} left={left} centerAlign={centerAlign ? true : false}>
         <ThemeProvider theme={theme}>
           <Typography variant="h1">{text}</Typography>
         </ThemeProvider>
@@ -55,11 +66,14 @@ function FloatingText(props: Props) {
   );
 }
 
-const Wrapper = styled.div<{ top: string; left: string }>`
+const Wrapper = styled.div<{ top: string; left: string; centerAlign: boolean }>`
   position: fixed;
   top: ${({ top }) => top};
   left: ${({ left }) => left};
-  transform: translate(-50%, -50%);
+  transform: translate(
+    ${({ centerAlign }) => (centerAlign ? '-50%' : '0')},
+    ${({ centerAlign }) => (centerAlign ? '-50%' : '0')}
+  );
   z-inex: 999;
 `;
 
