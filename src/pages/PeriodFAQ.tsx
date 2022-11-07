@@ -37,6 +37,8 @@ const PeriodFAQContainer = styled.div<{
   padding-top: 50rem;
   position: sticky;
   z-index: 999;
+  max-width: 600px;
+  width: 100%;
 `;
 
 export default PeriodFAQ;
