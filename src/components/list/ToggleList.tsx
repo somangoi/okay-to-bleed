@@ -40,6 +40,7 @@ const ToggleContainer = styled.div`
   border-radius: 20px;
   border: 1px solid white;
   width: 80%;
+  max-width: 600px;
   cursor: pointer;
   margin-bottom: 1.5rem;
 `;

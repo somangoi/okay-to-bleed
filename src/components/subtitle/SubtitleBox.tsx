@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Subtitle from './Subtitle';
-import { throttle } from 'lodash';
+import Ch1SubtitlesData from '../../config/i18n/en/Ch1Subtitles.json';
+import Ch2SubtitlesData from '../../config/i18n/en/Ch2Subtitles.json';
+import Ch3SubtitlesData from '../../config/i18n/en/Ch3Subtitles.json';
 
 type Props = {
-  subtitlesName: string;
-  subtitlesData: object;
+  chapter: number;
 };
 
-const SubtitleBox = (props: Props) => {
+const SubtitleBox = ({ chapter }: Props) => {
+  const { t } = useTranslation(`Ch${chapter}Subtitles`);
+  const [key, setKey] = useState<string>('');
+  const [chapterSubtitle, setChapterSubtitle] = useState<any>(null);
+
   const topOffset =
     2 * parseFloat(getComputedStyle(document.documentElement).fontSize); // 2rem
-  const { subtitlesName, subtitlesData } = props;
-  const { t } = useTranslation(subtitlesName);
-  const [key, setKey] = useState<string>('');
 
-  const getSubtitleKey = () => {
-    const key = Object.keys(subtitlesData)
+  const getSubtitleKey = useCallback(() => {
+    if (!chapterSubtitle) return;
+    const key = Object.keys(chapterSubtitle)
       .map(data => parseInt(data))
       .sort((a, b) => a - b)
       .find((data: number, index: number, array: number[]) => {
@@ -29,28 +32,34 @@ const SubtitleBox = (props: Props) => {
       });
 
     return key && `${key}`;
-  };
+  }, [chapterSubtitle]);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const subtitleKey = getSubtitleKey() || '0';
 
     if (key !== subtitleKey) {
       setKey(subtitleKey);
     }
-  };
+  }, [chapterSubtitle]);
 
   useEffect(() => {
-    window.addEventListener(
-      'scroll',
-      throttle(() => {
-        handleScroll();
-      }, 300),
-    );
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [chapterSubtitle]);
+
+  useEffect(() => {
+    chapter &&
+      setChapterSubtitle(
+        chapter === 1
+          ? Ch1SubtitlesData
+          : chapter === 2
+          ? Ch2SubtitlesData
+          : Ch3SubtitlesData,
+      );
+  }, [chapter]);
 
   return (
     <SubtitleContainer>

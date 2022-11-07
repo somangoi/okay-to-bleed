@@ -39,6 +39,7 @@ const SanitaryProductsWrapper = styled.div<{
   height: 100%;
   position: sticky;
   z-index: 999;
+  max-width: 600px;
 `;
 
 export default SanitaryProducts;
