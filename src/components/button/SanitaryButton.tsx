@@ -32,6 +32,7 @@ const ButtonContainer = styled.button`
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
   border-radius: 100%;
   cursor: pointer;
+  padding: 1.5rem;
 
   :hover {
     opacity: 90%;
