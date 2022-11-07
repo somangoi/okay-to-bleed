@@ -3,14 +3,12 @@ import Animation from '../components/animation/AnimationFrame';
 import SubtitleBox from '../components/subtitle/SubtitleBox';
 import Title from '../components/Title';
 import PeriodFAQ from './PeriodFAQ';
-import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
-import Ch2SubtitlesData from '../config/i18n/en/Ch2Subtitles.json';
-import Ch3SubtitlesData from '../config/i18n/en/Ch3Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
 import ChapterNavigation from '../components/nav/ChapterNavigation';
 import FloatingText from '../components/FloatingText';
+import styled from 'styled-components';
 
 type SceneInfo = {
   sceneType: string;
@@ -275,7 +273,7 @@ function Period({ chapter }: PeriodProps) {
   }, [chapter]);
 
   return (
-    <main style={{ padding: '1rem 0' }}>
+    <PeriodContainer>
       <Title text={t(`Chapter${chapter}-1Title`)} />
       {sceneInfo.map((scene, index) => {
         switch (scene.sceneType) {
@@ -327,19 +325,17 @@ function Period({ chapter }: PeriodProps) {
           />
         );
       })}
-      <SubtitleBox
-        subtitlesName={`Ch${chapter}Subtitles`}
-        subtitlesData={
-          chapter === 1
-            ? Ch1SubtitlesData
-            : chapter === 2
-            ? Ch2SubtitlesData
-            : Ch3SubtitlesData
-        }
-      />
+      <SubtitleBox chapter={chapter} />
       <ChapterNavigation chapter={chapter} />
-    </main>
+    </PeriodContainer>
   );
 }
+
+const PeriodContainer = styled.main`
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default React.memo(Period);

@@ -36,7 +36,10 @@ const ChapterNavigation = ({ chapter }: Props) => {
       {isMobile ? (
         <NavigationContainer>
           <MobileStepper
-            sx={{ background: 'rgba(255,255,255,0.6)' }}
+            sx={{
+              background: 'rgba(255,255,255,0.4)',
+              backdropFilter: 'blur(5px)',
+            }}
             variant="text"
             steps={maxSteps}
             position="static"
@@ -113,6 +116,7 @@ const NavigationContainer = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 999;
 `;
 
 const PcNavigationContainer = styled.div`
@@ -125,6 +129,12 @@ const PcNavigationContainer = styled.div`
   justify-content: center;
   padding-top: 50px;
 
+  .MuiStep-root {
+    svg {
+      cursor: pointer;
+    }
+  }
+
   .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
     color: rgba(0, 0, 0, 0.38);
   }
@@ -135,6 +145,7 @@ const PcNavigationContainer = styled.div`
 
   .css-qivjh0-MuiStepLabel-label.Mui-active {
     color: #fff !important;
+    cursor: pointer;
   }
 `;
 
