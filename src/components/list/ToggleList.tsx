@@ -11,7 +11,6 @@ interface ToggleListProps {
 const ToggleList = ({ title, content }: ToggleListProps) => {
   const [isContentShown, setIsContentShown] = useState<boolean>(false);
   const toggleListRef = useRef<HTMLDivElement>(null);
-  const maxHeightRef = useRef<number>();
 
   return (
     <ToggleContainer
@@ -40,6 +39,7 @@ const ToggleContainer = styled.div`
   border-radius: 20px;
   border: 1px solid white;
   width: 80%;
+  max-width: 600px;
   cursor: pointer;
   margin-bottom: 1.5rem;
 `;

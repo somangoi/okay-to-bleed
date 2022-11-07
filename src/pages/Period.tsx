@@ -1,15 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Animation from '../components/animation/AnimationFrame';
 import SubtitleBox from '../components/subtitle/SubtitleBox';
 import Title from '../components/Title';
 import PeriodFAQ from './PeriodFAQ';
-import Ch1SubtitlesData from '../config/i18n/en/Ch1Subtitles.json';
 import { useTranslation } from 'react-i18next';
 import { useScroll } from '../utils/customHooks';
 import SanitaryProducts from './SanitaryProducts';
+import ChapterNavigation from '../components/nav/ChapterNavigation';
+import FloatingText from '../components/FloatingText';
+import styled from 'styled-components';
 
-const sceneInfo = [
+type SceneInfo = {
+  sceneType: string;
+  id: string;
+  animationSrc: string;
+  maxFrame: number;
+  scrollHeight: number;
+  stopOffset?: number;
+}[];
+
+type TextInfo = {
+  id: string;
+  text: string;
+  fontSize: string;
+  fontColor: string;
+  fontWeight: number;
+  start: number;
+  end: number;
+  top: string;
+  left: string;
+}[];
+
+type PeriodProps = { chapter: number };
+
+const sceneInfo1 = [
   {
     sceneType: 'animation',
     id: 'lottie-1-1',
@@ -25,6 +49,9 @@ const sceneInfo = [
     maxFrame: 725,
     scrollHeight: 0,
   },
+];
+
+const sceneInfo2 = [
   {
     sceneType: 'animation',
     id: 'lottie-2-1',
@@ -43,7 +70,7 @@ const sceneInfo = [
     sceneType: 'animation',
     id: 'lottie-2-2',
     animationSrc: '/anim/chapter2-2.json',
-    maxFrame: 40,
+    maxFrame: 150,
     scrollHeight: 0,
   },
   {
@@ -53,6 +80,9 @@ const sceneInfo = [
     maxFrame: 424,
     scrollHeight: 0,
   },
+];
+
+const sceneInfo3 = [
   {
     sceneType: 'animation',
     id: 'lottie-3-1',
@@ -111,10 +141,52 @@ const sceneInfo = [
   },
 ];
 
-function Period() {
+function Period({ chapter }: PeriodProps) {
   const { t } = useTranslation('Period');
   const { scrollY } = useScroll();
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
+  const [sceneInfo, setSceneInfo] = useState<SceneInfo>([]);
+  const [textInfo, setTextInfo] = useState<TextInfo>([]);
+
+  const textInfo1 = [
+    {
+      id: 'title1-2',
+      text: t('Chapter1-2Title'),
+      fontSize: '2rem',
+      fontColor: 'white',
+      fontWeight: 600,
+      start: 7700,
+      end: 22300,
+      top: '7rem',
+      left: '40%',
+    },
+  ];
+  const textInfo2 = [
+    {
+      id: 'empty',
+      text: '',
+      fontSize: '0',
+      fontColor: 'white',
+      fontWeight: 0,
+      start: 0,
+      end: 0,
+      top: '0',
+      left: '0',
+    },
+  ];
+  const textInfo3 = [
+    {
+      id: 'empty',
+      text: '',
+      fontSize: '0',
+      fontColor: 'white',
+      fontWeight: 0,
+      start: 0,
+      end: 0,
+      top: '0',
+      left: '0',
+    },
+  ];
 
   let prevScrollHeight = 0;
 
@@ -143,6 +215,7 @@ function Period() {
       }
 
       // 새로고침시, current scene index 리셋
+      window.scrollTo({ top: 0 });
       let totalScrollHeight = 0;
       for (let i = 0; i < sceneInfo.length; i++) {
         totalScrollHeight += sceneInfo[i].scrollHeight;
@@ -154,11 +227,20 @@ function Period() {
     };
 
     setScrollHeight();
-  }, []);
+  }, [sceneInfo]);
+
+  useEffect(() => {
+    setSceneInfo(
+      chapter === 1 ? sceneInfo1 : chapter === 2 ? sceneInfo2 : sceneInfo3,
+    );
+    setTextInfo(
+      chapter === 1 ? textInfo1 : chapter === 2 ? textInfo2 : textInfo3,
+    );
+  }, [chapter]);
 
   return (
-    <main style={{ padding: '1rem 0' }}>
-      <Title text={t('title')} />
+    <PeriodContainer>
+      <Title text={t(`Chapter${chapter}-1Title`)} />
       {sceneInfo.map((scene, index) => {
         switch (scene.sceneType) {
           case 'animation':
@@ -193,12 +275,32 @@ function Period() {
             );
         }
       })}
-      <SubtitleBox
-        subtitlesName="Ch1Subtitles"
-        subtitlesData={Ch1SubtitlesData}
-      />
-    </main>
+      {textInfo.map((text, index) => {
+        return (
+          <FloatingText
+            text={text.text}
+            fontSize={text.fontSize}
+            fontColor={text.fontColor}
+            fontWeight={text.fontWeight}
+            start={text.start}
+            end={text.end}
+            top={text.top}
+            left={text.left}
+            key={text.id}
+          />
+        );
+      })}
+      <SubtitleBox chapter={chapter} />
+      <ChapterNavigation chapter={chapter} />
+    </PeriodContainer>
   );
 }
+
+const PeriodContainer = styled.main`
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default React.memo(Period);

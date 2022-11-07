@@ -29,23 +29,22 @@ const Wrapper = styled.div`
   height: 100vh;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 5rem;
 `;
 
 const TitleBox = styled.div`
   display: flex;
   width: 100%;
   margin: 5rem 0px;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 500;
   line-height: 1.2;
-  flex-grow: 2;
   text-align: center;
   justify-content: center;
   align-items: center;
 `;
 
-const LottieWrapper = styled.div`
-  flex-grow: 1;
-`;
+const LottieWrapper = styled.div``;
 
 export default Title;

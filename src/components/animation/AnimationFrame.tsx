@@ -126,6 +126,7 @@ const Lottie = styled.div`
   top: 0px;
   width: 100%;
   height: 100vh;
+  max-width: 600px;
 `;
 
 export default React.memo(AnimationFrame);
