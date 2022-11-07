@@ -1,23 +1,46 @@
-// @ts-nocheck
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import '@lottiefiles/lottie-player';
+import { Modal } from '@mui/material';
+import { Box } from '@mui/system';
+import { useTranslation } from 'react-i18next';
 
 interface SanitatyButtonProps {
-  animationData: string;
+  item: string;
 }
 
-const SanitaryButton = ({ animationData }: SanitatyButtonProps) => {
+const SanitaryButton = ({ item }: SanitatyButtonProps) => {
+  const { t } = useTranslation('SanitaryProducts');
+  const [showSanitaryModal, setShowSanitaryModal] = useState(false);
+
   return (
-    <ButtonContainer>
-      <lottie-player
-        src={animationData}
-        speed="0.3"
-        loop
-        autoplay
-        mode="bounce"
-      ></lottie-player>
-    </ButtonContainer>
+    <>
+      <ButtonContainer onClick={() => setShowSanitaryModal(true)}>
+        {/* @ts-ignore */}
+        <lottie-player
+          src={`/anim/sanitary_${item}.json`}
+          speed="0.3"
+          loop
+          autoplay
+          mode="bounce"
+        />
+      </ButtonContainer>
+      {showSanitaryModal && (
+        <CustomModal
+          open={showSanitaryModal}
+          onClose={() => setShowSanitaryModal(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <ModalContainer>
+            <ModalTitle>{t(`${item}Title`)}</ModalTitle>
+            <ModalContent>{t(`${item}Desc`)}</ModalContent>
+            <ModalSmallTitle>{t(`HowToUse`)}</ModalSmallTitle>
+            <ModalContent>{t(`${item}HowToUse`)}</ModalContent>
+          </ModalContainer>
+        </CustomModal>
+      )}
+    </>
   );
 };
 
@@ -44,4 +67,41 @@ const ButtonContainer = styled.button`
     opacity: 80%;
   }
 `;
+
+const CustomModal = styled(Modal)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ModalContainer = styled(Box)`
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 400px;
+`;
+
+const ModalTitle = styled.h3`
+  font-size: 1.3rem;
+  color: rgb(200, 57, 56);
+  margin-bottom: 0;
+`;
+
+const ModalSmallTitle = styled.p`
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(55, 53, 47);
+  margin-bottom: 0.2rem;
+`;
+
+const ModalContent = styled.p`
+  color: rgb(55, 53, 47);
+  white-space: pre-wrap;
+  margin-top: 0.5rem;
+`;
+
 export default SanitaryButton;
