@@ -9,7 +9,9 @@ type Props = {
 function Title(props: Props) {
   return (
     <Wrapper>
-      <TitleBox>{props.text}</TitleBox>
+      <TitleBox>
+        <Text>{props.text}</Text>
+      </TitleBox>
       <LottieWrapper>
         <lottie-player
           src="https://assets7.lottiefiles.com/packages/lf20_ADqq0Z.json"
@@ -37,12 +39,17 @@ const TitleBox = styled.div`
   display: flex;
   width: 100%;
   margin: 5rem 0px;
-  font-size: 40px;
-  font-weight: 500;
-  line-height: 1.2;
   text-align: center;
   justify-content: center;
   align-items: center;
+`;
+
+const Text = styled.h1`
+  word-break: keep-all;
+  white-space: break-spaces;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.2;
 `;
 
 const LottieWrapper = styled.div``;
