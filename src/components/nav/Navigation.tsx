@@ -9,11 +9,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ChapterMenu from '../ChapterMenu';
 
-const Navigation = () => {
+const Navigation = ({ showNav }: any) => {
   const navigate = useNavigate();
 
   return (
-    <NavContainer>
+    <NavContainer showNav={showNav}>
       <WebsiteTitle
         onClick={() => {
           scrollTo(0, 0);
@@ -44,16 +44,17 @@ const Navigation = () => {
   );
 };
 
-const NavContainer = styled.nav`
+const NavContainer = styled.nav<{ showNav: boolean }>`
   padding: 1.5rem !important;
   position: fixed;
-  top: 0;
+  top: ${({ showNav }) => (showNav ? '0 ' : '-80px')};
   right: 0;
   left: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: 0.3s linear;
 
   button {
     color: #fff !important;
