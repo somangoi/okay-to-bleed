@@ -9,6 +9,8 @@ import SanitaryProducts from './SanitaryProducts';
 import ChapterNavigation from '../components/nav/ChapterNavigation';
 import FloatingText from '../components/FloatingText';
 import styled from 'styled-components';
+import AlternativeSanitaryGoods from './AlternativeSanitaryGoods';
+import LastPage from './LastPage';
 
 type SceneInfo = {
   sceneType: string;
@@ -122,7 +124,7 @@ const sceneInfo3 = [
   {
     sceneType: 'sanitaryProducts',
     id: 'sanitary-products',
-    maxFrame: 100,
+    maxFrame: 80,
     animationSrc: '',
     scrollHeight: 0,
   },
@@ -134,10 +136,20 @@ const sceneInfo3 = [
     scrollHeight: 0,
   },
   {
-    sceneType: 'animation',
-    id: 'lottie-4-2',
-    animationSrc: '/anim/chapter4-2.json',
-    maxFrame: 45,
+    sceneType: 'alternativeSanitaryGoods',
+    id: 'alternative-sanitary-goods',
+    animationSrc: '',
+    maxFrame: 50,
+    scrollHeight: 0,
+  },
+];
+
+const sceneInfo4 = [
+  {
+    sceneType: 'lastPage',
+    id: 'last-page',
+    animationSrc: '',
+    maxFrame: 50,
     scrollHeight: 0,
   },
 ];
@@ -265,16 +277,28 @@ function Period({ chapter }: PeriodProps) {
 
   useEffect(() => {
     setSceneInfo(
-      chapter === 1 ? sceneInfo1 : chapter === 2 ? sceneInfo2 : sceneInfo3,
+      chapter === 1
+        ? sceneInfo1
+        : chapter === 2
+        ? sceneInfo2
+        : chapter === 3
+        ? sceneInfo3
+        : sceneInfo4,
     );
     setTextInfo(
-      chapter === 1 ? textInfo1 : chapter === 2 ? textInfo2 : textInfo3,
+      chapter === 1
+        ? textInfo1
+        : chapter === 2
+        ? textInfo2
+        : chapter === 3
+        ? textInfo3
+        : [],
     );
   }, [chapter]);
 
   return (
     <PeriodContainer>
-      <Title text={t(`Chapter${chapter}-1Title`)} />
+      {chapter !== 4 && <Title text={t(`Chapter${chapter}-1Title`)} />}
       {sceneInfo.map((scene, index) => {
         switch (scene.sceneType) {
           case 'animation':
@@ -307,6 +331,17 @@ function Period({ chapter }: PeriodProps) {
                 key={scene.id}
               />
             );
+          case 'alternativeSanitaryGoods':
+            return (
+              <AlternativeSanitaryGoods
+                virtualHeight={scene.scrollHeight}
+                maxFrame={scene.maxFrame}
+                currentScene={currentSceneIndex === index}
+                key={scene.id}
+              />
+            );
+          case 'lastPage':
+            return <LastPage />;
         }
       })}
       {textInfo.map((text, index) => {
@@ -325,7 +360,7 @@ function Period({ chapter }: PeriodProps) {
           />
         );
       })}
-      <SubtitleBox chapter={chapter} />
+      {chapter !== 4 && <SubtitleBox chapter={chapter} />}
       <ChapterNavigation chapter={chapter} />
     </PeriodContainer>
   );
