@@ -24,15 +24,8 @@ const SubtitleBox = (props: Props) => {
         const offsetY =
           (window.pageYOffset || document.documentElement.scrollTop) -
           topOffset;
-        const vh = +(document.documentElement.clientHeight / 100).toFixed(2);
 
-        if (index === array.length - 1) {
-          return array[index] * vh <= offsetY;
-        } else {
-          return (
-            array[index] * vh <= offsetY && array[index + 1] * vh >= offsetY
-          );
-        }
+        return array[index] <= offsetY && array[index + 1] >= offsetY;
       });
 
     return key && `${key}`;
