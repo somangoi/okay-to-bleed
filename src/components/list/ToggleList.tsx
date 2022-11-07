@@ -11,7 +11,6 @@ interface ToggleListProps {
 const ToggleList = ({ title, content }: ToggleListProps) => {
   const [isContentShown, setIsContentShown] = useState<boolean>(false);
   const toggleListRef = useRef<HTMLDivElement>(null);
-  const maxHeightRef = useRef<number>();
 
   return (
     <ToggleContainer
