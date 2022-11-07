@@ -20,7 +20,7 @@ type Props = {
 
 const ChapterNavigation = ({ chapter }: Props) => {
   const theme = useTheme();
-  const maxSteps = 3;
+  const maxSteps = 4;
   const navigate = useNavigate();
   const isMobile = useMediaQuery(`(max-width: 600px)`);
   const { t } = useTranslation('Period');
@@ -29,6 +29,7 @@ const ChapterNavigation = ({ chapter }: Props) => {
     t('Chapter1-1Title'),
     t('Chapter2-1Title'),
     t('Chapter3-1Title'),
+    t('LastChapterIndex'),
   ];
 
   return (
@@ -143,7 +144,7 @@ const PcNavigationContainer = styled.div`
     color: rgba(255, 255, 255, 0.3) !important;
   }
 
-  .css-qivjh0-MuiStepLabel-label.Mui-active {
+  .css-4ff9q7.Mui-active {
     color: #fff !important;
     cursor: pointer;
   }

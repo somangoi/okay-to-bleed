@@ -30,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/chapter1" element={<Navigate to="/" />} />
             <Route path="/chapter2" element={<Period chapter={2} />} />
             <Route path="/chapter3" element={<Period chapter={3} />} />
+            <Route path="/chapter4" element={<Period chapter={4} />} />
             <Route path="contact" element={<Contact />} />
             <Route path="support" element={<Support />} />
             <Route

@@ -88,7 +88,7 @@ const ModalContainer = styled(Box)`
 const ModalTitle = styled.h3`
   font-size: 1.3rem;
   color: rgb(200, 57, 56);
-  margin-bottom: 0;
+  margin: 0;
 `;
 
 const ModalSmallTitle = styled.p`
@@ -101,6 +101,7 @@ const ModalSmallTitle = styled.p`
 const ModalContent = styled.p`
   color: rgb(55, 53, 47);
   white-space: pre-wrap;
+  margin: 0;
   margin-top: 0.5rem;
 `;
 

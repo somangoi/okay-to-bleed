@@ -20,20 +20,20 @@ const SanitaryProducts = (props: Props) => {
   const { t } = useTranslation('SanitaryProducts');
 
   return (
-    <>
+    <SanitaryProductsWrapper
+      virtualHeight={props.virtualHeight}
+      currentScene={props.currentScene}
+    >
       <ComponentTitle>{t('SanitaryProductsTitle')}</ComponentTitle>
       <ComponentSmallTitle>
         {t('SanitaryProductsSmallTitle')}
       </ComponentSmallTitle>
-      <SanitaryProductsWrapper
-        virtualHeight={props.virtualHeight}
-        currentScene={props.currentScene}
-      >
+      <SanitaryProductsContainer>
         {sanitaryProductsInfo.map((item, index) => {
           return <SanitaryButton item={item} key={index} />;
         })}
-      </SanitaryProductsWrapper>
-    </>
+      </SanitaryProductsContainer>
+    </SanitaryProductsWrapper>
   );
 };
 
@@ -42,13 +42,10 @@ const SanitaryProductsWrapper = styled.div<{
   currentScene: boolean;
 }>`
   height: ${({ virtualHeight }) => `${virtualHeight}px`};
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  height: 100%;
-  position: sticky;
   z-index: 999;
   max-width: 600px;
+  opacity: ${({ currentScene }) => (currentScene ? '1' : '0')};
+  transition: opacity 0.7s ease-in-out;
 `;
 
 const ComponentTitle = styled.h2`
@@ -70,6 +67,15 @@ const ComponentSmallTitle = styled.p`
   @media (max-width: 600px) {
     margin-bottom: 2rem;
   }
+`;
+
+const SanitaryProductsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  position: sticky;
+  z-index: 999;
+  max-width: 600px;
 `;
 
 export default SanitaryProducts;

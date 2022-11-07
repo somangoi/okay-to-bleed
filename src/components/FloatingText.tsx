@@ -74,7 +74,7 @@ const Wrapper = styled.div<{ top: string; left: string; centerAlign: boolean }>`
     ${({ centerAlign }) => (centerAlign ? '-50%' : '0')},
     ${({ centerAlign }) => (centerAlign ? '-50%' : '0')}
   );
-  z-inex: 999;
+  z-index: 999;
 `;
 
 export default FloatingText;
