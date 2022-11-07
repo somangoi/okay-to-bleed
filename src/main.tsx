@@ -17,13 +17,20 @@ const Support = lazy(() => import('./pages/Support'));
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Suspense fallback={<LinearProgress style={{ width: '100%' }} />}>
+      <Suspense
+        fallback={
+          <LinearProgress
+            sx={{ position: 'absolute', left: 0, width: '100vw' }}
+          />
+        }
+      >
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="/" element={<Period chapter={1} />} />
             <Route path="/chapter1" element={<Navigate to="/" />} />
             <Route path="/chapter2" element={<Period chapter={2} />} />
             <Route path="/chapter3" element={<Period chapter={3} />} />
+            <Route path="/chapter4" element={<Period chapter={4} />} />
             <Route path="contact" element={<Contact />} />
             <Route path="support" element={<Support />} />
             <Route
