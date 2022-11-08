@@ -29,7 +29,7 @@ const Navigation = ({ showNav }: any) => {
           </IconButton>
         </Link>
         <ChapterMenu></ChapterMenu>
-        <Link to="/contact">
+        <Link to="/team">
           <IconButton>
             <ContactSupportRounded fontSize="small" />
           </IconButton>
