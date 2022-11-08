@@ -107,7 +107,7 @@ const TeamContainer = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8rem;
+  padding: 5rem 0;
   flex-direction: column;
 `;
 
@@ -116,13 +116,17 @@ const TeamTitle = styled.h1`
   font-weight: 700;
 
   @media (max-width: 600px) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 `;
 
 const TeamIntro = styled.p`
   margin-bottom: 5rem;
   text-align: center;
+  width: 90%;
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const ListWrapper = styled.ul`
