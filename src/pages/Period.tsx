@@ -361,6 +361,7 @@ function Period({ chapter }: PeriodProps) {
         );
       })}
       {chapter !== 4 && <SubtitleBox chapter={chapter} />}
+      {chapter !== 4 && <GuideText>{t('GuideText')}</GuideText>}
       <ChapterNavigation chapter={chapter} />
     </PeriodContainer>
   );
@@ -371,6 +372,12 @@ const PeriodContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const GuideText = styled.p`
+  font-size: 0.8rem;
+  position: relative;
+  bottom: 10%;
 `;
 
 export default React.memo(Period);
