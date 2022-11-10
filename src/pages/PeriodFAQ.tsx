@@ -10,12 +10,13 @@ type Props = {
 };
 
 const PeriodFAQ = (props: Props) => {
-  const { t } = useTranslation('PeriodFAQ');
+  const { t } = useTranslation(['PeriodFAQ', 'Period']);
   return (
     <PeriodFAQContainer
       virtualHeight={props.virtualHeight}
       currentScene={props.currentScene}
     >
+      <ComponentTitle>{t('Chapter2-3Title', { ns: 'Period' })}</ComponentTitle>
       <ToggleList title={t('1-1')} content={t('1-2')} />
       <ToggleList title={t('2-1')} content={t('2-2')} />
       <ToggleList title={t('3-1')} content={t('3-2')} />
@@ -33,7 +34,7 @@ const PeriodFAQContainer = styled.div<{
   height: ${({ virtualHeight }) => `${virtualHeight}px`};
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 50rem;
   position: sticky;
   z-index: 999;
@@ -41,4 +42,12 @@ const PeriodFAQContainer = styled.div<{
   width: 100%;
 `;
 
+const ComponentTitle = styled.h1`
+  font-size: 2rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: 600px) {
+    font-size: 1.6rem;
+  }
+`;
 export default PeriodFAQ;
