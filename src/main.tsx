@@ -11,7 +11,7 @@ const TRACKING_ID = import.meta.env.VITE_REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
 ReactGA.initialize(TRACKING_ID!);
 
 const Period = lazy(() => import('./pages/Period'));
-const Team = lazy(() => import('./pages/Team'));
+const About = lazy(() => import('./pages/About'));
 const Support = lazy(() => import('./pages/Support'));
 const Error = lazy(() => import('./pages/Error'));
 
@@ -32,8 +32,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/chapter2" element={<Period chapter={2} />} />
             <Route path="/chapter3" element={<Period chapter={3} />} />
             <Route path="/chapter4" element={<Period chapter={4} />} />
-            <Route path="team" element={<Team />} />
-            <Route path="support" element={<Support />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/support" element={<Support />} />
             <Route path="*" element={<Error errorCode={404} />} />
           </Route>
         </Routes>
