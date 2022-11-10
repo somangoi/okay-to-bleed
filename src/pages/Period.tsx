@@ -198,17 +198,6 @@ function Period({ chapter }: PeriodProps) {
       left: '15%',
     },
     {
-      id: 'title2-3',
-      text: t('Chapter2-3Title'),
-      fontSize: '2rem',
-      fontColor: 'white',
-      fontWeight: 600,
-      start: 17500,
-      end: 20000,
-      top: '6rem',
-      left: '15%',
-    },
-    {
       id: 'title2-4',
       text: t('Chapter2-4Title'),
       fontSize: '2rem',
