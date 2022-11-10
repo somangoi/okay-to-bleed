@@ -82,6 +82,7 @@ const ChapterNavigation = ({ chapter }: Props) => {
       ) : (
         <PcNavigationContainer>
           <Stepper
+            nonLinear
             activeStep={chapter - 1}
             sx={{ width: '50vw', color: 'white' }}
           >
@@ -133,20 +134,21 @@ const PcNavigationContainer = styled.div`
   .MuiStep-root {
     svg {
       cursor: pointer;
+      fill: rgba(0, 0, 0, 0.38);
     }
   }
-
-  .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
-    color: rgba(0, 0, 0, 0.38);
+  .MuiStepper-alternativeLabel {
+    color: white;
   }
 
-  .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
-    color: rgba(255, 255, 255, 0.3) !important;
-  }
-
-  .css-4ff9q7.Mui-active {
+  .Mui-active {
     color: #fff !important;
     cursor: pointer;
+
+    svg {
+      cursor: pointer;
+      fill: rgba(255, 255, 255, 0.38);
+    }
   }
 `;
 
