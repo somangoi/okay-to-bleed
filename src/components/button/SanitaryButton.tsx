@@ -34,9 +34,11 @@ const SanitaryButton = ({ item }: SanitatyButtonProps) => {
         >
           <ModalContainer>
             <ModalTitle>{t(`${item}Title`)}</ModalTitle>
-            <ModalContent>{t(`${item}Desc`)}</ModalContent>
-            <ModalSmallTitle>{t(`HowToUse`)}</ModalSmallTitle>
-            <ModalContent>{t(`${item}HowToUse`)}</ModalContent>
+            <ModalScrollContainer>
+              <ModalContent>{t(`${item}Desc`)}</ModalContent>
+              <ModalSmallTitle>{t(`HowToUse`)}</ModalSmallTitle>
+              <ModalContent>{t(`${item}HowToUse`)}</ModalContent>
+            </ModalScrollContainer>
           </ModalContainer>
         </CustomModal>
       )}
@@ -83,12 +85,19 @@ const ModalContainer = styled(Box)`
   justify-content: center;
   flex-direction: column;
   max-width: 400px;
+  margin: 0 20px;
 `;
 
 const ModalTitle = styled.h3`
   font-size: 1.3rem;
   color: rgb(200, 57, 56);
   margin: 0;
+`;
+
+const ModalScrollContainer = styled.div`
+  max-height: 40vh;
+  overflow-y: scroll;
+  margin-top: 20px;
 `;
 
 const ModalSmallTitle = styled.p`
