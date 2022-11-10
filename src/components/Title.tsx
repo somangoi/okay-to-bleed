@@ -50,6 +50,10 @@ const Text = styled.h1`
   font-size: 40px;
   font-weight: 500;
   line-height: 1.2;
+
+  @media (max-width: 600px) {
+    font-size: 30px;
+  }
 `;
 
 const LottieWrapper = styled.div``;

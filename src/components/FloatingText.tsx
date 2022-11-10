@@ -7,6 +7,7 @@ import {
   Fade,
   ThemeProvider,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 
 type Props = {
@@ -35,11 +36,13 @@ function FloatingText(props: Props) {
   } = props;
   const [visible, setVisible] = useState<boolean>(false);
   const { scrollY } = useScroll();
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const theme = createTheme({
     typography: {
       h1: {
-        fontSize: fontSize,
+        fontFamily: 'inherit',
+        fontSize: !isMobile ? fontSize : `calc(${fontSize} * 0.8)`,
         color: fontColor,
         fontWeight: fontWeight,
         wordBreak: 'keep-all',
@@ -59,7 +62,7 @@ function FloatingText(props: Props) {
     <Fade in={visible}>
       <Wrapper top={top} left={left} centerAlign={centerAlign ? true : false}>
         <ThemeProvider theme={theme}>
-          <Typography variant="h1">{text}</Typography>
+          <TypographyComponent variant="h1">{text}</TypographyComponent>
         </ThemeProvider>
       </Wrapper>
     </Fade>
@@ -67,9 +70,13 @@ function FloatingText(props: Props) {
 }
 
 const Wrapper = styled.div<{ top: string; left: string; centerAlign: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   position: fixed;
   top: ${({ top }) => top};
-  left: ${({ left }) => left};
+  /* left: ${({ left }) => left}; */
   transform: translate(
     ${({ centerAlign }) => (centerAlign ? '-50%' : '0')},
     ${({ centerAlign }) => (centerAlign ? '-50%' : '0')}
@@ -77,4 +84,8 @@ const Wrapper = styled.div<{ top: string; left: string; centerAlign: boolean }>`
   z-index: 999;
 `;
 
+const TypographyComponent = styled(Typography)`
+  max-width: 600px;
+  width: 80vw;
+`;
 export default FloatingText;
