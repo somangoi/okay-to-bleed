@@ -47,7 +47,7 @@ function ChapterMenu() {
           <MenuItem>Ch.3 {t('Chapter3-1Title')}</MenuItem>
         </Link>
         <Link to="/chapter4">
-          <MenuItem>Ch.4 {t('Title')}</MenuItem>
+          <MenuItem>Ch.4 {t('LastChapterIndex')}</MenuItem>
         </Link>
       </Menu>
     </a>
