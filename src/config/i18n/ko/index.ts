@@ -4,6 +4,7 @@ import Ch1Subtitles from './Ch1Subtitles.json';
 import Ch2Subtitles from './Ch2Subtitles.json';
 import Ch3Subtitles from './Ch3Subtitles.json';
 import SanitaryProducts from './SanitaryProducts.json';
+import Errors from './Errors.json';
 export default {
   Period,
   PeriodFAQ,
@@ -11,4 +12,5 @@ export default {
   Ch2Subtitles,
   Ch3Subtitles,
   SanitaryProducts,
+  Errors,
 };
