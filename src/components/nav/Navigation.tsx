@@ -2,6 +2,7 @@ import {
   ContactSupportRounded,
   HomeRounded,
   VolunteerActivismRounded,
+  InfoRounded,
 } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import React from 'react';
@@ -29,9 +30,9 @@ const Navigation = ({ showNav }: any) => {
           </IconButton>
         </Link>
         <ChapterMenu></ChapterMenu>
-        <Link to="/team">
+        <Link to="/about">
           <IconButton>
-            <ContactSupportRounded fontSize="small" />
+            <InfoRounded fontSize="small" />
           </IconButton>
         </Link>
         <Link to="/support">
@@ -70,6 +71,7 @@ const WebsiteTitle = styled.h1`
   color: white;
   margin: 0;
   font-weight: 400;
+  cursor: pointer;
 `;
 
 const MenuButtonContainer = styled.div``;
