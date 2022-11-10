@@ -65,7 +65,7 @@ const teamMembers = [
   },
 ];
 
-const Team = () => {
+const About = () => {
   const { t } = useTranslation('Period');
 
   const shuffleArray = (
@@ -171,4 +171,4 @@ const ListContent = styled.span`
   margin-top: 1rem;
 `;
 
-export default Team;
+export default About;
