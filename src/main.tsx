@@ -13,6 +13,7 @@ ReactGA.initialize(TRACKING_ID!);
 const Period = lazy(() => import('./pages/Period'));
 const Team = lazy(() => import('./pages/Team'));
 const Support = lazy(() => import('./pages/Support'));
+const Error = lazy(() => import('./pages/Error'));
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -33,16 +34,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/chapter4" element={<Period chapter={4} />} />
             <Route path="team" element={<Team />} />
             <Route path="support" element={<Support />} />
-            <Route
-              path="*"
-              element={
-                <main style={{ padding: '4rem 0px 0px' }}>
-                  <p>
-                    Page 404<br></br>There's nothing here!
-                  </p>
-                </main>
-              }
-            />
+            <Route path="*" element={<Error errorCode={404} />} />
           </Route>
         </Routes>
       </Suspense>
