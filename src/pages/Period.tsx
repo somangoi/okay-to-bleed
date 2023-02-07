@@ -155,7 +155,7 @@ const sceneInfo4 = [
 ];
 
 function Period({ chapter }: PeriodProps) {
-  const { t } = useTranslation('Period');
+  const { t, i18n } = useTranslation('Period');
   const { scrollY } = useScroll();
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
   const [sceneInfo, setSceneInfo] = useState<SceneInfo>([]);
@@ -283,7 +283,7 @@ function Period({ chapter }: PeriodProps) {
         ? textInfo3
         : [],
     );
-  }, [chapter]);
+  }, [chapter, i18n.language]);
 
   return (
     <PeriodContainer>
