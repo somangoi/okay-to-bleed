@@ -4,6 +4,12 @@ import styled from 'styled-components';
 
 const teamMembers = [
   {
+    name: '김도아',
+    link: 'https://www.instagram.com/doa_in.nepal/',
+    message:
+      '공사모에서 디자인도 하고 에세이도 쓰는 네팔소녀입니다! 국제개발협력 분야(그중에서도 네팔과 교육분야)에 관심이 많고, 선한 세상을 만드는데 도움이 되고 싶어요! Okay to bleed에서는 네팔친구(익명 요청)와 함께 네팔어 번역을 맡았습니다!',
+  },
+  {
     name: '황소미',
     link: 'https://bit.ly/3rmteNi',
     message:

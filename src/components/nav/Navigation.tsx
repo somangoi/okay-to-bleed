@@ -1,14 +1,13 @@
 import {
-  ContactSupportRounded,
   HomeRounded,
   VolunteerActivismRounded,
   InfoRounded,
 } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ChapterMenu from '../ChapterMenu';
+import LanguageMenu from '../menu/LanguageMenu';
 
 const Navigation = ({ showNav }: any) => {
   const navigate = useNavigate();
@@ -40,6 +39,7 @@ const Navigation = ({ showNav }: any) => {
             <VolunteerActivismRounded fontSize="small" />
           </IconButton>
         </Link>
+        <LanguageMenu />
       </MenuButtonContainer>
     </NavContainer>
   );

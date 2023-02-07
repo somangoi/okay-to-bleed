@@ -8,7 +8,7 @@ export default function Support() {
   return (
     <SupportContainer>
       <SmartToyOutlinedIcon sx={{ fontSize: '5rem' }} />
-      <SupportTitle>{t('CommingSoon')}</SupportTitle>
+      <SupportTitle>{t('ComingSoon')}</SupportTitle>
     </SupportContainer>
   );
 }
