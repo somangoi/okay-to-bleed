@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import translationEn from './en/index';
 import translationKo from './ko/index';
 import translationNe from './ne/index';
+import translationFr from './fr/index';
 
 export const defaultNS = 'common';
 
@@ -11,6 +12,7 @@ const resources = {
   en: translationEn,
   ko: translationKo,
   ne: translationNe,
+  fr: translationFr,
 } as const;
 
 const userLanguage = window.navigator.language;
