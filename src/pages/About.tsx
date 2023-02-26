@@ -23,7 +23,7 @@ const teamMembers = [
   },
   {
     name: '황소미',
-    link: 'https://bit.ly/3rmteNi',
+    link: 'https://somangoi.notion.site/Hello-world-I-m-Somi-3ad2c06957ce4919b41621ee9f70fd9c',
     message:
       '스타트업의 웹 프론트엔드 개발자이자 국제개발협력 공적인사적모임에서 테츠오로 활동중입니다. 소수자와 소외된 분들을 위하는 개발자가 되겠다는 목표를 가지고 개발을 하고 있습니다. Okay to Bleed에서는 PM과 웹개발을 맡았습니다.',
   },
