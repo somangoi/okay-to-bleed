@@ -103,14 +103,19 @@ const About = () => {
       <TeamIntro>
         {t('TeamIntro')}
         <br />
-        <ListLink href={t('NewsletterLink')}>Click here</ListLink>
+        <ListLink href={t('NewsletterLink')} target="_blank">
+          Click here
+        </ListLink>
       </TeamIntro>
       <ListWrapper>
         {shuffleArray(teamMembers).map(item => {
           return (
             <ListItem key={item.name}>
               <ListName>
-                {item.name} <ListLink href={item.link}>Learn more</ListLink>
+                {item.name}{' '}
+                <ListLink href={item.link} target="_blank">
+                  Learn more
+                </ListLink>
               </ListName>
               <ListContent> {item.message}</ListContent>
             </ListItem>
