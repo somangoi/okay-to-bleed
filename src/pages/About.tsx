@@ -4,6 +4,18 @@ import styled from 'styled-components';
 
 const teamMembers = [
   {
+    name: 'Tchetche Tryphen',
+    link: 'https://www.linkedin.com/in/tchetche-gbakui-tryphen-a8865a245',
+    message:
+      'Hello, I am Tchetche Tryphen from Côte d’Ivoire. I participate in English-French translation for OTB project. At the outset of my career in international development, it has been a real privilege contributing to the OTB project :)',
+  },
+  {
+    name: '이은샘',
+    link: 'www.linkedin.com/in/eunsaem-estelle-lee',
+    message:
+      '국제개발협력 컨설턴트 및 커리어 코치로 일하고 있습니다. 시공간적으로 더 큰 가치를 만드는 일에 관심이 있습니다. 공사모를 통해 Okay to Bleed를 알게 되어 프랑스어 번역을 맡았어요. 언제든 새로운 기회를 기다립니다.',
+  },
+  {
     name: '김도아',
     link: 'https://www.instagram.com/doa_in.nepal/',
     message:
@@ -91,14 +103,19 @@ const About = () => {
       <TeamIntro>
         {t('TeamIntro')}
         <br />
-        <ListLink href={t('NewsletterLink')}>Click here</ListLink>
+        <ListLink href={t('NewsletterLink')} target="_blank">
+          Click here
+        </ListLink>
       </TeamIntro>
       <ListWrapper>
         {shuffleArray(teamMembers).map(item => {
           return (
             <ListItem key={item.name}>
               <ListName>
-                {item.name} <ListLink href={item.link}>Learn more</ListLink>
+                {item.name}{' '}
+                <ListLink href={item.link} target="_blank">
+                  Learn more
+                </ListLink>
               </ListName>
               <ListContent> {item.message}</ListContent>
             </ListItem>

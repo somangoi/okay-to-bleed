@@ -8,14 +8,19 @@ const langOptions = [
   { text: 'English', data: 'en' },
   { text: '한국어', data: 'ko' },
   { text: 'नेपाली', data: 'ne' },
+  { text: 'Français', data: 'fr' },
 ];
 
 const LanguageMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
-  const [lang, setLang] = useState('');
+  const [userLanguage, setUserLanguage] = useState('');
   const { i18n } = useTranslation();
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    setUserLanguage(i18n.language);
+  }, []);
 
   const handleClickMenuButton = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -28,7 +33,7 @@ const LanguageMenu = () => {
   ) => {
     setSelectedIndex(index);
     i18n.changeLanguage(lang).then(() => {
-      setLang(lang);
+      setUserLanguage(lang);
     });
     setAnchorEl(null);
   };
@@ -54,7 +59,7 @@ const LanguageMenu = () => {
         {langOptions.map((lang, index) => (
           <MenuItemComponent
             key={lang.text}
-            selected={index === selectedIndex}
+            selected={userLanguage === lang.data}
             onClick={event => handleMenuItemClick(event, index, lang.data)}
           >
             {lang.text}
