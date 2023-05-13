@@ -34,11 +34,12 @@ const Navigation = ({ showNav }: any) => {
             <InfoRounded fontSize="small" />
           </IconButton>
         </Link>
-        <Link to="/support">
+        {/* TODO: remove support button  */}
+        {/* <Link to="/support">
           <IconButton>
             <VolunteerActivismRounded fontSize="small" />
           </IconButton>
-        </Link>
+        </Link> */}
         <LanguageMenu />
       </MenuButtonContainer>
     </NavContainer>
