@@ -5,6 +5,7 @@ import translationEn from './en/index';
 import translationKo from './ko/index';
 import translationNe from './ne/index';
 import translationFr from './fr/index';
+import translationVn from './vi/index';
 
 export const defaultNS = 'common';
 
@@ -13,6 +14,7 @@ const resources = {
   ko: translationKo,
   ne: translationNe,
   fr: translationFr,
+  vi: translationVn,
 } as const;
 
 const userLanguage = window.navigator.language;

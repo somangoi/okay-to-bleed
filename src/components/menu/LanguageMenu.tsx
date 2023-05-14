@@ -9,6 +9,7 @@ const langOptions = [
   { text: '한국어', data: 'ko' },
   { text: 'नेपाली', data: 'ne' },
   { text: 'Français', data: 'fr' },
+  { text: 'Tiếng Việt', data: 'vi' },
 ];
 
 const LanguageMenu = () => {
