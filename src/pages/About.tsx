@@ -4,6 +4,12 @@ import styled from 'styled-components';
 
 const teamMembers = [
   {
+    name: 'Mei',
+    link: 'https://www.facebook.com/diem.heo.313',
+    message:
+      'Hello I’m Mei from Viet Nam. I am a participant in English – Vietnamese translation for the Okay to Bleed project. It was the first time to join in an international project. Moreover, it was my pleasure for supporting Okay To Bleed. I hope this project will educate all people not only women and girls but also men having the wide witness in period as a marvelous present for women and understanding what’s happening in girl’s bodies.',
+  },
+  {
     name: 'Tchetche Tryphen',
     link: 'https://www.linkedin.com/in/tchetche-gbakui-tryphen-a8865a245',
     message:
